@@ -8,7 +8,8 @@ echo "  Runner Name: $(hostname)"
 echo "  Runner Labels: ${RUNNER_LABELS}"
 
 echo "Obtaining registration token"
-getRegistrationToken=$(curl \
+getRegistrationToken=$(
+  curl \
   --silent \
   --location \
   --request "POST" \
