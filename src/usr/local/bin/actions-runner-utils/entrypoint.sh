@@ -10,12 +10,12 @@ echo "  Runner Labels: ${RUNNER_LABELS}"
 echo "Obtaining registration token"
 getRegistrationToken=$(
   curl \
-  --silent \
-  --location \
-  --request "POST" \
-  --header "X-GitHub-Api-Version: 2022-11-28" \
-  --header "Authorization: Bearer ${GITHUB_TOKEN}" \
-  https://api.github.com/repos/"${GITHUB_REPOSITORY}"/actions/runners/registration-token | jq -r '.token'
+    --silent \
+    --location \
+    --request "POST" \
+    --header "X-GitHub-Api-Version: 2022-11-28" \
+    --header "Authorization: Bearer ${GITHUB_TOKEN}" \
+    https://api.github.com/repos/"${GITHUB_REPOSITORY}"/actions/runners/registration-token | jq -r '.token'
 )
 export getRegistrationToken
 
