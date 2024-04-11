@@ -1,4 +1,4 @@
-#/usr/local/bin/env bash
+#!/usr/local/bin/env bash
 
 ACTIONS_RUNNER_DIRECTORY="/actions-runner"
 

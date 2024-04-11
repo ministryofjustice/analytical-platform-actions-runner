@@ -1,3 +1,4 @@
+#checkov:skip=CKV_DOCKER_2:Healthcheck instructions have not been added to container images
 FROM public.ecr.aws/ubuntu/ubuntu:22.04
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
