@@ -1,0 +1,25 @@
+---
+schemaVersion: 2.0.0
+
+containerRunOptions:
+  user: "analyticalplatform"
+
+commandTests:
+  - name: "ubuntu"
+    command: "grep"
+    args: ["DISTRIB_RELEASE", "/etc/lsb-release"]
+    expectedOutput: ["DISTRIB_RELEASE=22.04"]
+
+  - name: "whoami"
+    command: "whoami"
+    expectedOutput: ["analyticalplatform"]
+
+  - name: "user"
+    command: "id"
+    args: ["--user", "analyticalplatform"]
+    expectedOutput: ["1000"]
+
+  - name: "groups"
+    command: "id"
+    args: ["--groups", "analyticalplatform"]
+    expectedOutput: ["100"]
