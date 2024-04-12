@@ -4,7 +4,7 @@ FROM public.ecr.aws/ubuntu/ubuntu:22.04
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform" \
       org.opencontainers.image.title="Actions Runner" \
-      org.opencontainers.image.description="Actions Runner for Data Platform" \
+      org.opencontainers.image.description="Actions Runner for Analytical Platform" \
       org.opencontainers.image.url="https://github.com/ministryofjustice/analytical-platform-actions-runner"
 
 ENV CONTAINER_USER="runner" \
