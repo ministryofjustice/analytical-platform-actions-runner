@@ -35,7 +35,6 @@ COPY --chown=${CONTAINER_USER}:${CONTAINER_GROUP} src/usr/local/bin/actions-runn
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
       ca-certificates=20230311ubuntu0.22.04.1 \
-      #curl=7.81.0-1ubuntu1.15 \
       curl=7.81.0-1ubuntu1.16 \
       git=1:2.34.1-1ubuntu1.10 \
       jq=1.6-2.1ubuntu3 \

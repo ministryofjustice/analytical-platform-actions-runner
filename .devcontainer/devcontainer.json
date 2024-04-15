@@ -1,5 +1,5 @@
 {
-  "name": "analytical-platform-actions_runner",
+  "name": "analytical-platform-actions-runner",
   "image": "ghcr.io/ministryofjustice/devcontainer-base:latest",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
