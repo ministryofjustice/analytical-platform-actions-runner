@@ -6,7 +6,7 @@
 
 This repository is managed in Terraform [here](https://github.com/ministryofjustice/data-platform-github-access/blob/main/terraform/github/analytical-platform-repositories.tf).
 
-### Readme
+## Readme
 
 The source repository had no README to pull accross
 
