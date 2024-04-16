@@ -49,4 +49,4 @@ apt-cache policy ${PACKAGE} # for example curl, git or gpg
 
 ### GitHub Action Runner
 
-Releases and SHAs for GitHub Actions Runner are published on [GitHub]https://github.com/actions/runner/releases)
+Releases and SHAs for GitHub Actions Runner are published on [GitHub](https://github.com/actions/runner/releases)
