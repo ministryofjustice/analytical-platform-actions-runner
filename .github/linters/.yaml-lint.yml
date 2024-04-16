@@ -1,0 +1,11 @@
+---
+extends: default
+
+ignore:
+  - '**/chart/templates/*.yaml'
+  - '**/chart/templates/tests/*.yaml'
+
+rules:
+  line-length:
+    max: 80
+    level: warning

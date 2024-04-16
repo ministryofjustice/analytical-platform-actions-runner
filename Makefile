@@ -1,5 +1,8 @@
 IMAGE_NAME = ghcr.io/ministryofjustice/analytical-platform-actions-runner:latest
 
+ct:
+	ct lint --charts chart
+
 test: build
 	container-structure-test test --config test/container-structure-test.yml --image $(IMAGE_NAME)
 
