@@ -1,4 +1,6 @@
-#!/usr/local/bin/env bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 ACTIONS_RUNNER_DIRECTORY="/actions-runner"
 
