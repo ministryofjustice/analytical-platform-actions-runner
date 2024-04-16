@@ -1,0 +1,57 @@
+---
+name: Scan Image
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  scan-image:
+    name: Scan Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+
+      - name: Build Image
+        id: build_image
+        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
+        with:
+          push: false
+          load: true
+          tags: analytical-platform-actions-runner
+
+      - name: Scan Image
+        id: scan_image
+        uses: aquasecurity/trivy-action@d710430a6722f083d3b36b8339ff66b32f22ee55 # v0.19.0
+        with:
+          image-ref: analytical-platform-actions-runner
+          exit-code: 1
+          format: sarif
+          output: trivy-results.sarif
+          severity: CRITICAL
+          limit-severities-for-sarif: true
+
+      - name: Upload SARIF
+        if: always()
+        id: upload_sarif
+        uses: github/codeql-action/upload-sarif@4355270be187e1b672a7a1c7c7bae5afdc1ab94a # v3.24.10
+        with:
+          sarif_file: trivy-results.sarif
+
+      - name: Scan Image (On SARIF Scan Failure)
+        if: failure() && steps.scan_image.outcome == 'failure'
+        id: scan_image_on_failure
+        uses: aquasecurity/trivy-action@d710430a6722f083d3b36b8339ff66b32f22ee55 # v0.19.0
+        with:
+          image-ref: analytical-platform-actions-runner
+          exit-code: 1
+          format: table
+          severity: CRITICAL

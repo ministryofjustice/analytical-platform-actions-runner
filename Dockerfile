@@ -1,44 +1,56 @@
-# checkov:skip=CKV_DOCKER_2:Healthcheck instructions have not been added to container images
-#This image is an example base image for this template and can be replaced to fit user needs
-FROM public.ecr.aws/ubuntu/ubuntu@sha256:722b3bddfe96b95441f626cf94974d79213090ecbd16954f71d7c080fb413561
+#checkov:skip=CKV_DOCKER_2:Healthcheck instructions have not been added to container images
+FROM public.ecr.aws/ubuntu/ubuntu:22.04
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
-      org.opencontainers.image.authors="Analytical Platform (analytical-platform@digital.justice.gov.uk)"\
-      org.opencontainers.image.title="{image title}" \
-      org.opencontainers.image.description="{decription}" \
-      org.opencontainers.image.url="{your repo url}"
+      org.opencontainers.image.authors="Analytical Platform" \
+      org.opencontainers.image.title="Actions Runner" \
+      org.opencontainers.image.description="Actions Runner for Analytical Platform" \
+      org.opencontainers.image.url="https://github.com/ministryofjustice/analytical-platform-actions-runner"
 
-ENV CONTAINER_USER="analyticalplatform" \
-    CONTAINER_UID="1000" \
-    CONTAINER_GROUP="analyticalplatform" \
-    CONTAINER_GID="1000" \
-    DEBIAN_FRONTEND="noninteractive"
+ENV CONTAINER_USER="runner" \
+    CONTAINER_UID="10000" \
+    CONTAINER_GROUP="runner" \
+    CONTAINER_GID="10000" \
+    CONTAINER_HOME="/actions-runner" \
+    DEBIAN_FRONTEND="noninteractive" \
+    ACTIONS_RUNNER_VERSION="2.314.1" \
+    ACTIONS_RUNNER_PKG_SHA="6c726a118bbe02cd32e222f890e1e476567bf299353a96886ba75b423c1137b5"
 
-# User
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN groupadd \
       --gid ${CONTAINER_GID} \
+      --system \
       ${CONTAINER_GROUP} \
     && useradd \
-         --uid ${CONTAINER_UID} \
-         --gid ${CONTAINER_GROUP} \
-         --create-home \
-         --shell /bin/bash \
-         ${CONTAINER_USER}
+      --uid ${CONTAINER_UID} \
+      --gid ${CONTAINER_GROUP} \
+      --create-home \
+      ${CONTAINER_USER} \
+    && mkdir --parents ${CONTAINER_HOME} \
+    && chown --recursive ${CONTAINER_USER}:${CONTAINER_GROUP} ${CONTAINER_HOME}
 
-# Base
-RUN apt-get update --yes \
-    && apt-get install --yes \
-         "apt-transport-https=2.4.11" \
-         "curl=7.81.0-1ubuntu1.15" \
-         "git=1:2.34.1-1ubuntu1.10" \
-         "gpg=2.2.27-3ubuntu2.1" \
-         "python3.10=3.10.12-1~22.04.3" \
-         "python3-pip=22.0.2+dfsg-1ubuntu0.4" \
-         "unzip=6.0-26ubuntu3.2" \
-    && apt-get clean --yes \
-    && rm --force --recursive /var/lib/apt/lists/*
+COPY --chown=${CONTAINER_USER}:${CONTAINER_GROUP} src/usr/local/bin/actions-runner-utils /usr/local/bin/actions-runner-utils
+
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends \
+      ca-certificates=20230311ubuntu0.22.04.1 \
+      curl=7.81.0-1ubuntu1.16 \
+      git=1:2.34.1-1ubuntu1.10 \
+      jq=1.6-2.1ubuntu3 \
+      libicu-dev=70.1-2 \
+      lsb-release=11.1.0ubuntu4 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && curl --location "https://github.com/actions/runner/releases/download/v${ACTIONS_RUNNER_VERSION}/actions-runner-linux-x64-${ACTIONS_RUNNER_VERSION}.tar.gz" \
+      --output "actions-runner-linux-x64-${ACTIONS_RUNNER_VERSION}.tar.gz" \
+    && echo "${ACTIONS_RUNNER_PKG_SHA}"  "actions-runner-linux-x64-${ACTIONS_RUNNER_VERSION}.tar.gz" | /usr/bin/sha256sum --check \
+    && tar --extract --gzip --file="actions-runner-linux-x64-${ACTIONS_RUNNER_VERSION}.tar.gz" --directory="${CONTAINER_HOME}" \
+    && chmod +x /usr/local/bin/actions-runner-utils/*.sh \
+    && rm --force "actions-runner-linux-x64-${ACTIONS_RUNNER_VERSION}.tar.gz"
 
 USER ${CONTAINER_USER}
 
-WORKDIR /home/${CONTAINER_USER}
+WORKDIR ${CONTAINER_HOME}
 
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/actions-runner-utils/entrypoint.sh"]

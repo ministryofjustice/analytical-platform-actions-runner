@@ -2,7 +2,7 @@
 schemaVersion: 2.0.0
 
 containerRunOptions:
-  user: "analyticalplatform"
+  user: "runner"
 
 commandTests:
   - name: "ubuntu"
@@ -12,14 +12,14 @@ commandTests:
 
   - name: "whoami"
     command: "whoami"
-    expectedOutput: ["analyticalplatform"]
+    expectedOutput: ["runner"]
 
   - name: "user"
     command: "id"
-    args: ["--user", "analyticalplatform"]
+    args: ["--user", "runner"]
     expectedOutput: ["1000"]
 
   - name: "groups"
     command: "id"
-    args: ["--groups", "analyticalplatform"]
+    args: ["--groups", "runner"]
     expectedOutput: ["100"]
