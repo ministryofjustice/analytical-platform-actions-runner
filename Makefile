@@ -1,7 +1,6 @@
 IMAGE_NAME = ghcr.io/ministryofjustice/analytical-platform-actions-runner:latest
 
 test: build
-
 	container-structure-test test --config test/container-structure-test.yml --image $(IMAGE_NAME)
 
 scan: build

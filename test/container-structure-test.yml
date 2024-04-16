@@ -1,8 +1,10 @@
 ---
 schemaVersion: 2.0.0
 
-containerRunOptions:
+metadataTest:
+  entrypoint: ["/usr/local/bin/entrypoint.sh"]
   user: "runner"
+  workdir: "/actions-runner"
 
 commandTests:
   - name: "ubuntu"
@@ -23,3 +25,20 @@ commandTests:
     command: "id"
     args: ["--groups", "runner"]
     expectedOutput: ["100"]
+
+fileExistenceTests:
+  - name: "/usr/local/bin/entrypoint.sh"
+    path: "/usr/local/bin/entrypoint.sh"
+    shouldExist: true
+    uid: 65534
+    gid: 65534
+    permissions: "-rwxr-xr-x"
+    isExecutableBy: any
+
+  - name: "/actions-runner/config.sh"
+    path: "/actions-runner/config.sh"
+    shouldExist: true
+
+  - name: "/actions-runner/run.sh"
+    path: "/actions-runner/run.sh"
+    shouldExist: true
