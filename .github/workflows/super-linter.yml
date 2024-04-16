@@ -33,4 +33,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_KUBERNETES_KUBECONFORM: false # Super-Linter doesn't support https://github.com/jtyr/kubeconform-helm
-
