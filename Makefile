@@ -19,6 +19,9 @@ define CONTAINER_TEST
 	fi
 endef
 
+ct:
+	ct lint --charts chart
+
 build:
 	$(DOCKER_BUILD)
 
