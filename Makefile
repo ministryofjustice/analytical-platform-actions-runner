@@ -1,21 +1,29 @@
 IMAGE_NAME = ghcr.io/ministryofjustice/analytical-platform-actions-runner:latest
+ARCH = $(shell uname --machine)
 
-ct:
-	ct lint --charts chart
+define DOCKER_BUILD
+	@echo "Building on $(ARCH) architecture";
+	@if [ "$(ARCH)" = "aarch64" ] || [ "$(ARCH)" = "arm64" ]; then \
+		docker build --platform linux/amd64 --file Dockerfile --tag $(IMAGE_NAME) .; \
+	else \
+		docker build --file Dockerfile --tag $(IMAGE_NAME) .; \
+	fi
+endef
 
-test: build
-	container-structure-test test --config test/container-structure-test.yml --image $(IMAGE_NAME)
-
-scan: build
-	trivy image --vuln-type  os,library --severity  CRITICAL --exit-code 1 $(IMAGE_NAME)
+define CONTAINER_TEST
+	@echo "Testing on $(ARCH) architecture";
+	@if [ "$(ARCH)" = "aarch64" ] || [ "$(ARCH)" = "arm64" ]; then \
+		container-structure-test test --platform linux/amd64 --config test/container-structure-test.yml --image $(IMAGE_NAME); \
+	else \
+		container-structure-test test --config test/container-structure-test.yml --image $(IMAGE_NAME); \
+	fi
+endef
 
 build:
-	@ARCH=`uname -m`; \
-	case $$ARCH in \
-	aarch64 | arm64) \
-		echo "Building on $$ARCH architecture"; \
-		docker build --platform linux/amd64 --file Dockerfile --tag $(IMAGE_NAME) . ;; \
-	*) \
-		echo "Building on $$ARCH architecture"; \
-		docker build --file Dockerfile --tag $(IMAGE_NAME) . ;; \
-	esac
+	$(DOCKER_BUILD)
+
+test: build
+	$(CONTAINER_TEST)
+
+scan: build
+	trivy image --vuln-type os,library --severity CRITICAL --exit-code 1 $(IMAGE_NAME)
