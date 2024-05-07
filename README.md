@@ -20,7 +20,7 @@ docker run -it --rm \
   --name analytical-platform-actions-runner \
   --env GITHUB_TOKEN="XXX" \
   --env GITHUB_REPOSITORY="ministryofjustice/analytical-platform" \
-  --env RUNNER_LABELS="YYY"
+  --env RUNNER_LABELS="YYY" \
   analytical-platform.service.justice.gov.uk/actions-runner:local
 ```
 ## Versions
@@ -30,9 +30,9 @@ docker run -it --rm \
 Generally Dependabot does this, but the following command will return the digest:
 
 ```bash
-docker pull --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:22.04
+docker pull --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:24.04
 
-docker image inspect --format='{{index .RepoDigests 0}}' public.ecr.aws/ubuntu/ubuntu:22.04
+docker image inspect --format='{{index .RepoDigests 0}}' public.ecr.aws/ubuntu/ubuntu:24.04
 ```
 
 ### APT Packages
@@ -40,7 +40,7 @@ docker image inspect --format='{{index .RepoDigests 0}}' public.ecr.aws/ubuntu/u
 To find latest APT package versions, you can run the following:
 
 ```bash
-docker run -it --rm --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:22.04
+docker run -it --rm --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:24.04
 
 apt-get update
 
