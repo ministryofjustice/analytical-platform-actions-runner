@@ -1,5 +1,5 @@
 #checkov:skip=CKV_DOCKER_2:actions/runner does not provider a mechanism for checking the health of the service
-FROM public.ecr.aws/ubuntu/ubuntu@sha256:d55d834bd8b4e1b720fe743ab90a295e8f50ca280aa8c02700a5440461ea160e
+FROM public.ecr.aws/ubuntu/ubuntu@sha256:d0122618c593c336a3c8094b53cd3768379a67e3b4a04faf69cb8317aced43a5
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform" \
