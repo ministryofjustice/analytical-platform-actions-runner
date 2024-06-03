@@ -1,5 +1,5 @@
 #checkov:skip=CKV_DOCKER_2:actions/runner does not provider a mechanism for checking the health of the service
-FROM public.ecr.aws/ubuntu/ubuntu@sha256:d55d834bd8b4e1b720fe743ab90a295e8f50ca280aa8c02700a5440461ea160e
+FROM public.ecr.aws/ubuntu/ubuntu@sha256:4eef301bd53e72f08185a0d2692653f7773c712158d0923ba1942f7125ddd003
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform" \
@@ -13,8 +13,8 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.316.1" \
-    ACTIONS_RUNNER_PKG_SHA="d62de2400eeeacd195db91e2ff011bfb646cd5d85545e81d8f78c436183e09a8"
+    ACTIONS_RUNNER_VERSION="2.317.0" \
+    ACTIONS_RUNNER_PKG_SHA="9e883d210df8c6028aff475475a457d380353f9d01877d51cc01a17b2a91161d"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
