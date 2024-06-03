@@ -3,8 +3,8 @@
   "image": "ghcr.io/ministryofjustice/devcontainer-base:latest",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/ministryofjustice/devcontainer-feature/container-structure-test:0": {},
-    "ghcr.io/ministryofjustice/devcontainer-feature/kubernetes:0": {},
+    "ghcr.io/ministryofjustice/devcontainer-feature/container-structure-test:1": {},
+    "ghcr.io/ministryofjustice/devcontainer-feature/kubernetes:1": {},
     "ghcr.io/ministryofjustice/devcontainer-feature/static-analysis:1": {}
   },
   "customizations": {
