@@ -33,6 +33,7 @@ fi
 
 if [[ "${EPHEMERAL}" == "true" ]]; then
   EPHEMERAL_FLAG="--ephemeral"
+  trap 'echo "Shutting down runner"; exit' SIGINT SIGQUIT SIGTERM INT TERM QUIT
 else
   EPHEMERAL_FLAG=""
 fi
