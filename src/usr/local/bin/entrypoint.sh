@@ -3,6 +3,7 @@
 set -euo pipefail
 
 ACTIONS_RUNNER_DIRECTORY="/actions-runner"
+EPHEMERAL="${EPHEMERAL:-"false"}"
 
 echo "Runner parameters:"
 echo "  Repository: ${GITHUB_REPOSITORY}"
@@ -30,8 +31,14 @@ else
   REPO_TOKEN="${getRegistrationToken}"
 fi
 
+if [[ "${EPHEMERAL}" == "true" ]]; then
+  EPHEMERAL_FLAG="--ephemeral"
+else
+  EPHEMERAL_FLAG=""
+fi
+
 echo "Configuring runner"
-bash "${ACTIONS_RUNNER_DIRECTORY}/config.sh" \
+bash "${ACTIONS_RUNNER_DIRECTORY}/config.sh" ${EPHEMERAL_FLAG} \
   --unattended \
   --disableupdate \
   --url "https://github.com/${GITHUB_REPOSITORY}" \
