@@ -38,3 +38,8 @@ github:
   token:
   runner:
     labels:
+
+ephemeral: false
+
+maxReplicaCount: 5
+pollingInterval: 30

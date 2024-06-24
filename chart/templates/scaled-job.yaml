@@ -1,0 +1,64 @@
+{{- if .Values.ephemeral }}
+---
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: github-trigger-auth
+spec:
+  secretTargetRef:
+    - parameter: personalAccessToken
+      name: {{ .Release.Name }}-github-token
+      key: token
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledJob
+metadata:
+  name: {{ include "actions-runner.fullname" . }}
+  labels:
+    {{- include "actions-runner.labels" . | nindent 4 }}
+spec:
+  jobTargetRef:
+    template:
+      metadata:
+        {{- with .Values.podAnnotations }}
+        annotations:
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+        labels:
+          {{- include "actions-runner.labels" . | nindent 8 }}
+    {{- with .Values.podLabels }}
+          {{- toYaml . | nindent 8 }}
+          {{- end }}
+      spec:
+        serviceAccountName: {{ include "actions-runner.serviceAccountName" . }}
+        containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}-ephemeral-rc3"
+          imagePullPolicy: Always
+          env:
+          - name: EPHEMERAL
+            value: "true"
+          - name: GITHUB_REPOSITORY
+            value: {{ .Values.github.organisation }}/{{ .Values.github.repository }}
+          - name: RUNNER_LABELS
+            value: {{ .Values.github.runner.labels | quote }}
+          - name: GITHUB_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-github-token
+                key: token
+        restartPolicy: Never
+  successfulJobsHistoryLimit: 0
+  minReplicaCount: 0
+  maxReplicaCount: {{ .Values.maxReplicaCount }}
+  pollingInterval: {{ .Values.pollingInterval }}
+  triggers:
+  - type: github-runner
+    metadata:
+      owner: {{ .Values.github.organisation }}
+      repos: {{ .Values.github.repository }}
+      labels: {{ .Values.github.runner.labels | quote }} 
+      runnerScope: "repo" 
+    authenticationRef:
+      name: github-trigger-auth
+{{- end }}
