@@ -57,8 +57,8 @@ spec:
     metadata:
       owner: {{ .Values.github.organisation }}
       repos: {{ .Values.github.repository }}
-      labels: {{ .Values.github.runner.labels | quote }} 
-      runnerScope: "repo" 
+      labels: {{ .Values.github.runner.labels | quote }}
+      runnerScope: "repo"
     authenticationRef:
       name: github-trigger-auth
 {{- end }}
