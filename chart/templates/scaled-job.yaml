@@ -33,7 +33,7 @@ spec:
         serviceAccountName: {{ include "actions-runner.serviceAccountName" . }}
         containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}-ephemeral-rc3"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.ephemeralTag | default (printf "%s-ephemeral" .Chart.AppVersion) }}"
           imagePullPolicy: Always
           env:
           - name: EPHEMERAL

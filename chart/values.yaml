@@ -8,6 +8,7 @@ image:
   pullPolicy: IfNotPresent
   repository: ghcr.io/ministryofjustice/analytical-platform-actions-runner
   tag: 2.317.0
+  ephemeralTag: 2.317.0-ephemeral-rc3
 
 imagePullSecrets: []
 
