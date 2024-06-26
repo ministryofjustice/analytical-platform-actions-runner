@@ -50,9 +50,3 @@ apt-cache policy ${PACKAGE} # for example curl, git or gpg
 ### GitHub Action Runner
 
 Releases and SHAs for GitHub Actions Runner are published on [GitHub](https://github.com/actions/runner/releases)
-
-## Helm
-
-### Ephemeral Runners
-
-Set the ephemeral parameter to true in your values.yaml to use ephemeral runners `--set ephemeral=true`
