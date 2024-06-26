@@ -1,0 +1,8 @@
+{
+    "absolute": true,
+    "ignore": [
+      "**/chart/templates/scaled-job.yaml"
+    ],
+    "reporters": ["consoleFull"],
+    "threshold": 0
+}
