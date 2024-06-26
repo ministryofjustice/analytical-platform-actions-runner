@@ -3,7 +3,7 @@
 apiVersion: keda.sh/v1alpha1
 kind: TriggerAuthentication
 metadata:
-  name: github-trigger-auth
+  name: {{ .Release.Name }}-github-trigger-auth
 spec:
   secretTargetRef:
     - parameter: personalAccessToken
@@ -78,5 +78,5 @@ spec:
       labels: {{ .Values.github.runner.labels | quote }}
       runnerScope: "repo"
     authenticationRef:
-      name: github-trigger-auth
+      name: {{ .Release.Name }}-github-trigger-auth
 {{- end }}
