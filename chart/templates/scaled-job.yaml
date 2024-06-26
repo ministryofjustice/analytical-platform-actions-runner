@@ -1,4 +1,4 @@
-{{- if .Values.ephemeral }}
+{{- if .Values.ephemeral.enabled }}
 ---
 apiVersion: keda.sh/v1alpha1
 kind: TriggerAuthentication
@@ -33,8 +33,10 @@ spec:
         serviceAccountName: {{ include "actions-runner.serviceAccountName" . }}
         containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.ephemeralTag | default (printf "%s-ephemeral" .Chart.AppVersion) }}"
-          imagePullPolicy: Always
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
           env:
           - name: EPHEMERAL
             value: "true"
@@ -47,11 +49,27 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}-github-token
                 key: token
+        {{- if .Values.ephemeral.karpenter.enabled }}
         restartPolicy: Never
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: compute.analytical-platform.service.justice.gov.uk/karpenter-node-pool
+                      operator: In
+                      values:
+                        - {{ .Values.ephemeral.karpenter.nodePool }}
+        tolerations:
+          - key: compute.analytical-platform.service.justice.gov.uk/karpenter-node-pool
+            operator: "Equal"
+            value: {{ .Values.ephemeral.karpenter.nodePool }}
+            effect: "NoSchedule"
+        {{- end }}
   successfulJobsHistoryLimit: 0
   minReplicaCount: 0
-  maxReplicaCount: {{ .Values.maxReplicaCount }}
-  pollingInterval: {{ .Values.pollingInterval }}
+  maxReplicaCount: {{ .Values.ephemeral.keda.maxReplicaCount }}
+  pollingInterval: {{ .Values.ephemeral.keda.pollingInterval }}
   triggers:
   - type: github-runner
     metadata:
