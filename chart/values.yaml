@@ -39,7 +39,7 @@ github:
   runner:
     labels:
 
-ephemeral: 
+ephemeral:
   enabled: false
   karpenter:
     enabled: false
