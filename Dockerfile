@@ -44,7 +44,8 @@ apt-get install --yes --no-install-recommends \
   "jq=1.7.1-3build1" \
   "libicu-dev=74.2-1ubuntu3" \
   "lsb-release=12.0-2" \
-  "gcc=4:13.2.0-7ubuntu1"
+  "gcc=4:13.2.0-7ubuntu1" \
+  "libsqlite3-dev=3.45.1-1ubuntu2"
 
 apt-get clean
 
