@@ -2,8 +2,8 @@
 extends: default
 
 ignore:
-  - '**/chart/templates/*.yaml'
-  - '**/chart/templates/tests/*.yaml'
+  - "**/chart/templates/*.yaml"
+  - "**/chart/templates/tests/*.yaml"
 
 rules:
   line-length:
