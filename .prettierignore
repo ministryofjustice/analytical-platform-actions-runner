@@ -1,2 +1,2 @@
-.devcontainer/devcontainer-lock.json
+.devcontainer/*.json
 .github/linters/.jscpd.json
