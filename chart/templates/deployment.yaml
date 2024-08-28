@@ -44,6 +44,21 @@ spec:
                   key: token
             - name: RUNNER_LABELS
               value: {{ .Values.github.runner.labels | quote }}
+            {{- if .Values.runner.cache.enabled }}
+            - name: AGENT_TOOLSDIRECTORY
+              value: {{ .Values.runner.cache.agentToolsDirectory }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.runner.cache.enabled }}
+          volumeMounts:
+            - name: actions-runner-cache
+              mountPath: {{ .Values.runner.cache.agentToolsDirectory }}
+          {{- end }}
+      {{- if .Values.runner.cache.enabled }}
+      volumes:
+        - name: actions-runner-cache
+          persistentVolumeClaim:
+            claimName: {{ .Values.runner.cache.pvcName }}
+      {{- end }}
 {{- end }}

@@ -1,5 +1,5 @@
 ---
-name: Release
+name: 🔖 Release
 
 on:
   push:
@@ -13,7 +13,9 @@ jobs:
     name: Release Image
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      actions: read
+      attestations: write
+      contents: write
       id-token: write
       packages: write
     steps:
@@ -26,7 +28,7 @@ jobs:
         uses: sigstore/cosign-installer@4959ce089c160fddf62f7b42464195ba1a56d382 # v3.6.0
 
       - name: Log in to GitHub Container Registry
-        id: login_ghcr
+        id: ghcr_login
         uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
         with:
           registry: ghcr.io
@@ -46,13 +48,47 @@ jobs:
         run: |
           cosign sign --yes ghcr.io/${{ github.repository }}@${{ steps.build_and_push.outputs.digest }}
 
-      - name: Verify
-        id: verify
+      - name: Generate SBOM
+        id: generate_sbom
+        uses: anchore/sbom-action@61119d458adab75f756bc0b9e4bde25725f86a7a # v0.17.2
+        with:
+          image: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+          format: cyclonedx-json
+          output-file: "sbom.cyclonedx.json"
+
+      - name: Attest
+        uses: actions/attest-build-provenance@6149ea5740be74af77f260b9db67e633f6b0a9a1 # v1.4.2
+        id: attest
+        with:
+          subject-name: ghcr.io/${{ github.repository }}
+          subject-digest: ${{ steps.build_and_push.outputs.digest }}
+          push-to-registry: true
+
+      - name: Attest SBOM
+        uses: actions/attest-sbom@5026d3663739160db546203eeaffa6aa1c51a4d6 # v1.4.1
+        id: attest_sbom
+        with:
+          subject-name: ghcr.io/${{ github.repository }}
+          subject-digest: ${{ steps.build_and_push.outputs.digest }}
+          sbom-path: sbom.cyclonedx.json
+          push-to-registry: true
+
+      - name: cosign Verify
+        id: cosign_verify
+        shell: bash
         run: |
           cosign verify \
             --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-            --certificate-identity=https://github.com/${{ github.repository }}/.github/workflows/release.yml@refs/tags/${{ github.ref_name }} \
+            --certificate-identity=https://github.com/${{ github.workflow_ref }} \
             ghcr.io/${{ github.repository }}@${{ steps.build_and_push.outputs.digest }}
+
+      - name: GitHub Attestation Verify
+        id: gh_attestation_verify
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh attestation verify oci://ghcr.io/${{ github.repository }}:${{ github.ref_name }} --repo ${{ github.repository }}
 
   release-chart:
     name: Release Chart
