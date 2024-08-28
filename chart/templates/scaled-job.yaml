@@ -32,23 +32,38 @@ spec:
       spec:
         serviceAccountName: {{ include "actions-runner.serviceAccountName" . }}
         containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          env:
-          - name: EPHEMERAL
-            value: "true"
-          - name: GITHUB_REPOSITORY
-            value: {{ .Values.github.organisation }}/{{ .Values.github.repository }}
-          - name: RUNNER_LABELS
-            value: {{ .Values.github.runner.labels | quote }}
-          - name: GITHUB_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Release.Name }}-github-token
-                key: token
+          - name: {{ .Chart.Name }}
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            resources:
+              {{- toYaml .Values.resources | nindent 12 }}
+            env:
+              - name: EPHEMERAL
+                value: "true"
+              - name: GITHUB_REPOSITORY
+                value: {{ .Values.github.organisation }}/{{ .Values.github.repository }}
+              - name: RUNNER_LABELS
+                value: {{ .Values.github.runner.labels | quote }}
+              - name: GITHUB_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: {{ .Release.Name }}-github-token
+                    key: token
+              {{- if .Values.runner.cache.enabled }}
+              - name: AGENT_TOOLSDIRECTORY
+                value: {{ .Values.runner.cache.agentToolsDirectory }}
+              {{- end }}
+            {{- if .Values.runner.cache.enabled }}
+            volumeMounts:
+              - name: actions-runner-cache
+                mountPath: {{ .Values.runner.cache.agentToolsDirectory }}
+            {{- end }}
+        {{- if .Values.runner.cache.enabled }}
+        volumes:
+          - name: actions-runner-cache
+            persistentVolumeClaim:
+              claimName: {{ .Values.runner.cache.pvcName }}
+        {{- end }}
         {{- if .Values.ephemeral.karpenter.enabled }}
         restartPolicy: Never
         affinity:
@@ -71,12 +86,12 @@ spec:
   maxReplicaCount: {{ .Values.ephemeral.keda.maxReplicaCount }}
   pollingInterval: {{ .Values.ephemeral.keda.pollingInterval }}
   triggers:
-  - type: github-runner
-    metadata:
-      owner: {{ .Values.github.organisation }}
-      repos: {{ .Values.github.repository }}
-      labels: {{ .Values.github.runner.labels | quote }}
-      runnerScope: "repo"
-    authenticationRef:
-      name: {{ .Release.Name }}-github-trigger-auth
+    - type: github-runner
+      metadata:
+        owner: {{ .Values.github.organisation }}
+        repos: {{ .Values.github.repository }}
+        labels: {{ .Values.github.runner.labels | quote }}
+        runnerScope: "repo"
+      authenticationRef:
+        name: {{ .Release.Name }}-github-trigger-auth
 {{- end }}

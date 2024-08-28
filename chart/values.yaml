@@ -39,11 +39,17 @@ github:
   runner:
     labels:
 
+runner:
+  cache:
+    enabled: true
+    agentToolsDirectory: /actions-runner/_tools
+    pvcName: actions-runner-cache
+
 ephemeral:
-  enabled: false
+  enabled: true
   karpenter:
-    enabled: false
-    nodePool: "general-on-demand"
+    enabled: true
+    nodePool: "general-spot"
   keda:
-    maxReplicaCount: 5
-    pollingInterval: 30
+    maxReplicaCount: 15
+    pollingInterval: 20
