@@ -1,5 +1,5 @@
 ---
-name: Chart Lint
+name: 🗺️ Chart Lint
 
 on:
   pull_request:

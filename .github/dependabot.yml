@@ -6,11 +6,20 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: ":dependabot: github-actions"
+      include: "scope"
   - package-ecosystem: "devcontainers"
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: ":dependabot: devcontainers"
+      include: "scope"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: ":dependabot: docker"
+      include: "scope"

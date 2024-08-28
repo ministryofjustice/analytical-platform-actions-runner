@@ -1,5 +1,5 @@
 ---
-name: Super-Linter
+name: 🦝 Super-Linter
 
 on:
   pull_request:
@@ -27,9 +27,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run Super-Linter
+      - name: Super-Linter
         id: super_linter
         uses: super-linter/super-linter/slim@02a1172d274f021e4c70f66e23f1085eadd1064b # v7.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_KUBERNETES_KUBECONFORM: false # Super-Linter doesn't support https://github.com/jtyr/kubeconform-helm
+          VALIDATE_KUBECONFORM: false
