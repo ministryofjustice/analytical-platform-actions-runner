@@ -39,10 +39,10 @@ apt-get update
 apt-get install --yes --no-install-recommends \
   "apt-transport-https=2.7.14build2" \
   "ca-certificates=20240203" \
-  "curl=8.5.0-2ubuntu10.2" \
+  "curl=8.5.0-2ubuntu10.3" \
   "git=1:2.43.0-1ubuntu7.1" \
   "jq=1.7.1-3build1" \
-  "libicu-dev=74.2-1ubuntu3" \
+  "libicu-dev=74.2-1ubuntu3.1" \
   "lsb-release=12.0-2" \
   "gcc=4:13.2.0-7ubuntu1" \
   "libsqlite3-dev=3.45.1-1ubuntu2"
