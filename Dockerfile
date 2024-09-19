@@ -1,5 +1,5 @@
 #checkov:skip=CKV_DOCKER_2:actions/runner does not provider a mechanism for checking the health of the service
-FROM public.ecr.aws/ubuntu/ubuntu@sha256:e6e66381e1ded976f2cdb0e87d1fe820710aff3ac7800bf252e8a0deeca0f135
+FROM public.ecr.aws/ubuntu/ubuntu@sha256:5b2fc4131b3c134a019c3ea815811de70e6ad9ee1626f59bf302558a95b436e5
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform" \
@@ -39,7 +39,7 @@ apt-get update
 apt-get install --yes --no-install-recommends \
   "apt-transport-https=2.7.14build2" \
   "ca-certificates=20240203" \
-  "curl=8.5.0-2ubuntu10.3" \
+  "curl=8.5.0-2ubuntu10.4" \
   "git=1:2.43.0-1ubuntu7.1" \
   "jq=1.7.1-3build1" \
   "libicu-dev=74.2-1ubuntu3.1" \
