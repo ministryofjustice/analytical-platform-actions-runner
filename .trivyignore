@@ -5,3 +5,7 @@ CVE-2022-25883
 # .NET
 CVE-2019-0980
 CVE-2019-0981
+
+# In the Linux kernel, the following vulnerability has been resolved:
+# exec: Fix ToCToU between perm check and set-uid/gid usage
+CVE-2024-43882
