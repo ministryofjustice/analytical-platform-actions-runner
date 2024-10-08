@@ -13,8 +13,8 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.319.1" \
-    ACTIONS_RUNNER_PKG_SHA="3f6efb7488a183e291fc2c62876e14c9ee732864173734facc85a1bfb1744464"
+    ACTIONS_RUNNER_VERSION="2.320.0" \
+    ACTIONS_RUNNER_PKG_SHA="93ac1b7ce743ee85b5d386f5c1787385ef07b3d7c728ff66ce0d3813d5f46900"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
