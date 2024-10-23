@@ -2,7 +2,7 @@
 github:
   organisation: ministryofjustice
   repository: analytical-platform
-  token: this-is-not-a-real-token
+  tokenSecretName: this-is-not-a-real-secret-name
   runner:
     labels: "self-hosted,analytical-platform"
 
