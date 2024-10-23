@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   pullPolicy: IfNotPresent
   repository: ghcr.io/ministryofjustice/analytical-platform-actions-runner
-  tag: 2.320.0-1
+  tag: 2.320.0-2
 
 imagePullSecrets: []
 
@@ -15,7 +15,8 @@ serviceAccount:
   create: true
   automount: true
   name: ""
-  annotations: {}
+  annotations:
+    checkov.io/skip1: "CKV_K8S_21=Default namespace is not used when deploying with Helm"
 
 podAnnotations: {}
 podLabels: {}
@@ -35,15 +36,10 @@ resources:
 github:
   organisation:
   repository:
-  token:
+  tokenSecretName: actions-runners-token-apc-self-hosted-runners
+  tokenSecretKey: token
   runner:
     labels:
-
-runner:
-  cache:
-    enabled: true
-    agentToolsDirectory: /actions-runner/_tools
-    pvcName: actions-runner-cache
 
 ephemeral:
   enabled: true
