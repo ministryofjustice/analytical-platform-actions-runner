@@ -14,9 +14,9 @@
       ]
     },
     "ghcr.io/ministryofjustice/devcontainer-feature/kubernetes:1": {
-      "version": "1.0.1",
-      "resolved": "ghcr.io/ministryofjustice/devcontainer-feature/kubernetes@sha256:0ec758e44468ba2a8b70b87613762ab04e50f7bb5eac8f2aea592cff213dbde5",
-      "integrity": "sha256:0ec758e44468ba2a8b70b87613762ab04e50f7bb5eac8f2aea592cff213dbde5"
+      "version": "1.0.2",
+      "resolved": "ghcr.io/ministryofjustice/devcontainer-feature/kubernetes@sha256:d24f235b7578a71a60fce981d250fa300e9f353911561648c31a7022fd8ded6a",
+      "integrity": "sha256:d24f235b7578a71a60fce981d250fa300e9f353911561648c31a7022fd8ded6a"
     },
     "ghcr.io/ministryofjustice/devcontainer-feature/static-analysis:1": {
       "version": "1.0.0",
