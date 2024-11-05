@@ -56,4 +56,4 @@ Releases for GitHub Actions Runner are maintained on [GitHub](https://github.com
 
 ## Maintenance
 
-This component is maintained and patched using an automated process which generates a ticket on the first of the month like the [following](https://github.com/orgs/ministryofjustice/projects/27/views/18?pane=issue&itemId=85625710&issue=ministryofjustice%7Canalytical-platform%7C5906)
+Maintenance of this component is scheduled in this [workflow](https://github.com/ministryofjustice/analytical-platform/blob/main/.github/workflows/schedule-issue-actions-runner.yml), which generates a maintenance ticket as per this [example](https://github.com/ministryofjustice/analytical-platform/issues/5906).
