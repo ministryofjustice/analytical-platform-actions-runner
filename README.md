@@ -53,3 +53,7 @@ apt-cache policy ${PACKAGE} # for example curl, git or gpg
 ### GitHub Action Runner
 
 Releases for GitHub Actions Runner are maintained on [GitHub](https://github.com/actions/runner/releases).
+
+## Maintenance
+
+Maintenance of this component is scheduled in this [workflow](https://github.com/ministryofjustice/analytical-platform/blob/main/.github/workflows/schedule-issue-actions-runner.yml), which generates a maintenance ticket as per this [example](https://github.com/ministryofjustice/analytical-platform/issues/5906).
