@@ -6,9 +6,9 @@ metadata:
   name: {{ .Release.Name }}-github-trigger-auth
 spec:
   secretTargetRef:
-    - parameter: personalAccessToken
-      name: {{ .Values.github.tokenSecretName }}
-      key: {{ .Values.github.tokenSecretKey }}
+    - parameter: appKey
+      name: {{ .Values.ephemeral.keda.triggerAuthentication.secretTargetRef.name }}
+      key: {{ .Values.ephemeral.keda.triggerAuthentication.secretTargetRef.key }}
 ---
 apiVersion: keda.sh/v1alpha1
 kind: ScaledJob
@@ -77,6 +77,8 @@ spec:
         repos: {{ .Values.github.repository }}
         labels: {{ .Values.github.runner.labels | quote }}
         runnerScope: "repo"
+        applicationID: {{ .Values.github.app.applicationID | quote }}
+        installationID: {{ .Values.github.app.installationID | quote }}
       authenticationRef:
         name: {{ .Release.Name }}-github-trigger-auth
 {{- end }}
