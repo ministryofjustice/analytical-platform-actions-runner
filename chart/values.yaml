@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   pullPolicy: IfNotPresent
   repository: ghcr.io/ministryofjustice/analytical-platform-actions-runner
-  tag: 2.320.0-3
+  tag: 2.320.0-4-rc1
 
 imagePullSecrets: []
 
@@ -40,6 +40,9 @@ github:
   tokenSecretKey: token
   runner:
     labels:
+  app:
+    applicationID:
+    installationID:
 
 ephemeral:
   enabled: true
@@ -47,5 +50,9 @@ ephemeral:
     enabled: true
     nodePool: "general-spot"
   keda:
-    maxReplicaCount: 15
+    triggerAuthentication:
+      secretTargetRef:
+        name: actions-runners-github-app-apc-self-hosted-runners
+        key: private-key
+    maxReplicaCount: 20
     pollingInterval: 20
