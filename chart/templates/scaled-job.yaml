@@ -77,8 +77,8 @@ spec:
         repos: {{ .Values.github.repository }}
         labels: {{ .Values.github.runner.labels | quote }}
         runnerScope: "repo"
-        applicationID: {{ .Values.github.app.applicationID }}
-        installationID: {{ .Values.github.app.installationID }}
+        applicationID: {{ .Values.github.app.applicationID | quote }}
+        installationID: {{ .Values.github.app.installationID | quote }}
       authenticationRef:
         name: {{ .Release.Name }}-github-trigger-auth
 {{- end }}
