@@ -7,8 +7,8 @@ metadata:
 spec:
   secretTargetRef:
     - parameter: appKey
-      name: {{ .Values.keda.triggerAuthentication.secretTargetRef.name }}
-      key: {{ .Values.keda.triggerAuthentication.secretTargetRef.key }}
+      name: {{ .Values.ephemeral.keda.triggerAuthentication.secretTargetRef.name }}
+      key: {{ .Values.ephemeral.keda.triggerAuthentication.secretTargetRef.key }}
 ---
 apiVersion: keda.sh/v1alpha1
 kind: ScaledJob
