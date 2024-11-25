@@ -1,11 +1,12 @@
+# Ubuntu
+CVE-2024-43882
+
 # Node.js
 CVE-2024-29415
 CVE-2022-25883
+CVE-2024-21538
 
 # .NET
 CVE-2019-0980
 CVE-2019-0981
-
-# In the Linux kernel, the following vulnerability has been resolved:
-# exec: Fix ToCToU between perm check and set-uid/gid usage
-CVE-2024-43882
+CVE-2024-38095

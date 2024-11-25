@@ -1,5 +1,5 @@
 #checkov:skip=CKV_DOCKER_2:actions/runner does not provider a mechanism for checking the health of the service
-FROM public.ecr.aws/ubuntu/ubuntu@sha256:5b2fc4131b3c134a019c3ea815811de70e6ad9ee1626f59bf302558a95b436e5
+FROM public.ecr.aws/ubuntu/ubuntu@sha256:da20fb875cfefd317c49e7aaf3998d3e5ad42c5b20f34a0eec6dca2fe4fbb8f4
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform" \
@@ -13,8 +13,8 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.320.0" \
-    ACTIONS_RUNNER_PKG_SHA="93ac1b7ce743ee85b5d386f5c1787385ef07b3d7c728ff66ce0d3813d5f46900"
+    ACTIONS_RUNNER_VERSION="2.321.0" \
+    ACTIONS_RUNNER_PKG_SHA="ba46ba7ce3a4d7236b16fbe44419fb453bc08f866b24f04d549ec89f1722a29e"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
@@ -39,7 +39,7 @@ apt-get update
 apt-get install --yes --no-install-recommends \
   "apt-transport-https=2.7.14build2" \
   "ca-certificates=20240203" \
-  "curl=8.5.0-2ubuntu10.4" \
+  "curl=8.5.0-2ubuntu10.5" \
   "git=1:2.43.0-1ubuntu7.1" \
   "jq=1.7.1-3build1" \
   "libicu-dev=74.2-1ubuntu3.1" \

@@ -29,7 +29,7 @@ commandTests:
   - name: "actions-runner"
     command: "bash"
     args: ["run.sh", "--version"]
-    expectedOutput: ["2.320.0"]
+    expectedOutput: ["2.321.0"]
 
 fileExistenceTests:
   - name: "/usr/local/bin/entrypoint.sh"
