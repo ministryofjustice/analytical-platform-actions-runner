@@ -4,6 +4,7 @@ set -euo pipefail
 
 ACTIONS_RUNNER_DIRECTORY="/actions-runner"
 EPHEMERAL="${EPHEMERAL:-"false"}"
+RUNNER_GROUP="${RUNNER_GROUP:-""}"
 
 echo "Runner parameters:"
 echo "  Repository: ${GITHUB_REPOSITORY}"
@@ -38,6 +39,12 @@ else
   EPHEMERAL_FLAG=""
 fi
 
+if [[ -z "${RUNNER_GROUP}" ]]; then
+  RUNNER_GROUP_FLAG=""
+else
+  RUNNER_GROUP_FLAG="--runnergroup ${RUNNER_GROUP}"
+fi
+
 echo "Configuring runner"
 bash "${ACTIONS_RUNNER_DIRECTORY}/config.sh" ${EPHEMERAL_FLAG} \
   --unattended \
@@ -45,7 +52,7 @@ bash "${ACTIONS_RUNNER_DIRECTORY}/config.sh" ${EPHEMERAL_FLAG} \
   --url "https://github.com/${GITHUB_REPOSITORY}" \
   --token "${REPO_TOKEN}" \
   --name "$(hostname)" \
-  --labels "${RUNNER_LABELS}"
+  --labels "${RUNNER_LABELS}" ${RUNNER_GROUP_FLAG}
 
 echo "Starting runner"
 bash "${ACTIONS_RUNNER_DIRECTORY}/run.sh"

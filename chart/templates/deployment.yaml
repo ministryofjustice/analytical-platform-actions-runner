@@ -44,6 +44,10 @@ spec:
                   key: {{ .Values.github.tokenSecretKey }}
             - name: RUNNER_LABELS
               value: {{ .Values.github.runner.labels | quote }}
+            {{- if .Values.github.runner.group }}
+            - name: RUNNER_GROUP
+              value: {{ .Values.github.runner.group }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 {{- end }}

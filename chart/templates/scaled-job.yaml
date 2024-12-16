@@ -49,6 +49,10 @@ spec:
                   secretKeyRef:
                     name: {{ .Values.github.tokenSecretName }}
                     key: {{ .Values.github.tokenSecretKey }}
+              {{- if .Values.github.runner.group }}
+              - name: RUNNER_GROUP
+                value: {{ .Values.github.runner.group }}
+              {{- end }}
         {{- if .Values.ephemeral.karpenter.enabled }}
         restartPolicy: Never
         affinity:
