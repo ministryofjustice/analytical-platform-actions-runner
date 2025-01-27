@@ -39,8 +39,8 @@ apt-get update
 apt-get install --yes --no-install-recommends \
   "apt-transport-https=2.7.14build2" \
   "ca-certificates=20240203" \
-  "curl=8.5.0-2ubuntu10.5" \
-  "git=1:2.43.0-1ubuntu7.1" \
+  "curl=8.5.0-2ubuntu10.6" \
+  "git=1:2.43.0-1ubuntu7.2" \
   "jq=1.7.1-3build1" \
   "libicu-dev=74.2-1ubuntu3.1" \
   "lsb-release=12.0-2" \
