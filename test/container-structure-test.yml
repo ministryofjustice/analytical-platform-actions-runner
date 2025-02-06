@@ -19,17 +19,17 @@ commandTests:
   - name: "user"
     command: "id"
     args: ["--user", "runner"]
-    expectedOutput: ["1000"]
+    expectedOutput: ["10000"]
 
   - name: "groups"
     command: "id"
     args: ["--groups", "runner"]
-    expectedOutput: ["100"]
+    expectedOutput: ["10000"]
 
   - name: "actions-runner"
     command: "bash"
     args: ["run.sh", "--version"]
-    expectedOutput: ["2.321.0"]
+    expectedOutput: ["2.322.0"]
 
 fileExistenceTests:
   - name: "/usr/local/bin/entrypoint.sh"
