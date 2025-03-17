@@ -1,8 +1,9 @@
-#checkov:skip=CKV_DOCKER_2:actions/runner does not provider a mechanism for checking the health of the service
-FROM public.ecr.aws/ubuntu/ubuntu@sha256:562b04c2e7aedb72b0f919d659f6c607087f839d584037f096d9cd97b308006e
+#checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
+
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:562b04c2e7aedb72b0f919d659f6c607087f839d584037f096d9cd97b308006e
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
-      org.opencontainers.image.authors="Analytical Platform" \
+      org.opencontainers.image.authors="Analytical Platform (analytical-platform@digital.justice.gov.uk)" \
       org.opencontainers.image.title="Actions Runner" \
       org.opencontainers.image.description="Actions Runner image for Analytical Platform" \
       org.opencontainers.image.url="https://github.com/ministryofjustice/analytical-platform-actions-runner"
@@ -40,6 +41,7 @@ apt-get install --yes --no-install-recommends \
   "apt-transport-https=2.7.14build2" \
   "ca-certificates=20240203" \
   "curl=8.5.0-2ubuntu10.6" \
+  "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.2" \
   "jq=1.7.1-3build1" \
   "libicu-dev=74.2-1ubuntu3.1" \
