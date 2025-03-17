@@ -5,6 +5,8 @@ on:
   pull_request:
     branches:
       - main
+  schedule:
+    - cron: "0 9 * * 1-5" # Every weekday at 9AM UTC
 
 permissions: {}
 
@@ -18,6 +20,12 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Clean Actions Runner
+        id: clean_actions_runner
+        uses: ministryofjustice/github-actions/clean-actions-runner@db1a54895bf5fb975c60af47e5a3aab96505ca3e # v18.6.0
+        with:
+          confirm: true
 
       - name: Build
         id: build
@@ -39,3 +47,16 @@ jobs:
           severity: HIGH,CRITICAL
           ignore-unfixed: true
           exit-code: 1
+
+      - name: Slack CVE Alert
+        if: failure() && github.event_name == 'schedule' && steps.scan.outcome == 'failure'
+        id: slack_cve_alert
+        uses: slackapi/slack-github-action@485a9d42d3a73031f12ec201c457e2162c45d02d # v2.0.0
+        with:
+          webhook-type: incoming-webhook
+          webhook: ${{ secrets.CVE_SCAN_SLACK_WEBHOOK_URL }}
+          payload: |
+            {
+              "repository": "${{ github.repository }}",
+              "run_id": "${{ github.run_id }}"
+            }
