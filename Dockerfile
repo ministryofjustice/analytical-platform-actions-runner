@@ -1,6 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
 
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:562b04c2e7aedb72b0f919d659f6c607087f839d584037f096d9cd97b308006e
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:4d860156ddae5923ed93d6b161c6b2f0f437d8086210f087db85b83fc2689914
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform (analytical-platform@digital.justice.gov.uk)" \
@@ -14,8 +14,8 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.322.0" \
-    ACTIONS_RUNNER_PKG_SHA="b13b784808359f31bc79b08a191f5f83757852957dd8fe3dbfcc38202ccf5768"
+    ACTIONS_RUNNER_VERSION="2.323.0" \
+    ACTIONS_RUNNER_PKG_SHA="0dbc9bf5a58620fc52cb6cc0448abcca964a8d74b5f39773b7afcad9ab691e19"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
@@ -43,11 +43,11 @@ apt-get install --yes --no-install-recommends \
   "curl=8.5.0-2ubuntu10.6" \
   "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.2" \
+  "gcc=4:13.2.0-7ubuntu1" \
   "jq=1.7.1-3build1" \
   "libicu-dev=74.2-1ubuntu3.1" \
-  "lsb-release=12.0-2" \
-  "gcc=4:13.2.0-7ubuntu1" \
-  "libsqlite3-dev=3.45.1-1ubuntu2.1"
+  "libsqlite3-dev=3.45.1-1ubuntu2.1" \
+  "lsb-release=12.0-2"
 
 apt-get clean
 
