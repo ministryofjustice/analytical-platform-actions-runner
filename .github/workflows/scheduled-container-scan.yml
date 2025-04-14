@@ -1,0 +1,18 @@
+---
+name: ⏰ Scheduled Container Scan
+
+on:
+  schedule:
+    - cron: "0 9 * * 1-5" # Every weekday at 9AM UTC
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  scheduled-container-scan:
+    name: Scheduled Container Scan
+    permissions:
+      contents: read
+    uses: ministryofjustice/analytical-platform-github-actions/.github/workflows/reusable-scheduled-container-scan.yml@604db7bf80e5af74f8c081d47a406d293eeae029 # v2.1.0
+    secrets:
+      cve-scan-slack-webhook-url: ${{ secrets.ANALYTICAL_PLATFORM_CVE_SCAN_SLACK_WEBHOOK_URL }}
