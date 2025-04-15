@@ -14,8 +14,11 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.323.0" \
-    ACTIONS_RUNNER_PKG_SHA="0dbc9bf5a58620fc52cb6cc0448abcca964a8d74b5f39773b7afcad9ab691e19"
+    ACTIONS_RUNNER_VERSION="2.323.0-1" \
+    ACTIONS_RUNNER_PKG_SHA="0dbc9bf5a58620fc52cb6cc0448abcca964a8d74b5f39773b7afcad9ab691e19" \
+    MICROSOFT_SQL_ODBC_VERSION="18.5.1.1-1" \
+    MICROSOFT_SQL_TOOLS_VERSION="18.4.1.1-1" \
+    PATH="/opt/mssql-tools18/bin:${PATH}"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
@@ -61,6 +64,29 @@ echo "${ACTIONS_RUNNER_PKG_SHA}"  "actions-runner-linux-x64-${ACTIONS_RUNNER_VER
 tar --extract --gzip --file="actions-runner-linux-x64-${ACTIONS_RUNNER_VERSION}.tar.gz" --directory="${CONTAINER_HOME}"
 
 rm --force "actions-runner-linux-x64-${ACTIONS_RUNNER_VERSION}.tar.gz"
+EOF
+
+# Microsoft SQL ODBC and Tools
+RUN <<EOF
+curl --location --fail-with-body \
+  "https://packages.microsoft.com/keys/microsoft.asc" \
+  --output microsoft.asc
+
+cat microsoft.asc | gpg --dearmor --output microsoft-prod.gpg
+
+install -D --owner root --group root --mode 644 microsoft-prod.gpg /usr/share/keyrings/microsoft-prod.gpg
+
+echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/24.04/prod noble main" > /etc/apt/sources.list.d/mssql-release.list
+
+apt-get update --yes
+
+ACCEPT_EULA=Y apt-get install --yes \
+  "msodbcsql18=${MICROSOFT_SQL_ODBC_VERSION}" \
+  "mssql-tools18=${MICROSOFT_SQL_TOOLS_VERSION}"
+
+apt-get clean --yes
+
+rm --force --recursive /var/lib/apt/lists/* microsoft.asc microsoft-prod.gpg
 EOF
 
 USER ${CONTAINER_USER}
