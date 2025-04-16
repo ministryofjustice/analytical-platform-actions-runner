@@ -47,6 +47,7 @@ apt-get install --yes --no-install-recommends \
   "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.2" \
   "gcc=4:13.2.0-7ubuntu1" \
+  "gpg=2.4.4-2ubuntu17.2" \
   "jq=1.7.1-3build1" \
   "libicu-dev=74.2-1ubuntu3.1" \
   "libsqlite3-dev=3.45.1-1ubuntu2.1" \
