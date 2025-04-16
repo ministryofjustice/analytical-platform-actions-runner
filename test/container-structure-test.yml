@@ -31,6 +31,11 @@ commandTests:
     args: ["run.sh", "--version"]
     expectedOutput: ["2.323.0"]
 
+  - name: "sqlcmd"
+    command: "sqlcmd"
+    args: ["-?"]
+    expectedOutput: ["Version 18.4.0001.1 Linux"]
+
 fileExistenceTests:
   - name: "/usr/local/bin/entrypoint.sh"
     path: "/usr/local/bin/entrypoint.sh"
@@ -46,4 +51,8 @@ fileExistenceTests:
 
   - name: "/actions-runner/run.sh"
     path: "/actions-runner/run.sh"
+    shouldExist: true
+
+  - name: "/opt/microsoft/msodbcsql18/lib64/libmsodbcsql-18.5.so.1.1"
+    path: "/opt/microsoft/msodbcsql18/lib64/libmsodbcsql-18.5.so.1.1"
     shouldExist: true

@@ -56,6 +56,34 @@ apt-cache policy ${PACKAGE} # for example curl, git or gpg
 
 Releases for GitHub Actions Runner are maintained on [GitHub](https://github.com/actions/runner/releases).
 
+### Microsoft ODBC driver for SQL Server
+
+The latest version of Microsoft ODBC driver for SQL Server can be obtained by running:
+
+```bash
+docker run -it --rm --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:24.04
+
+apt-get update --yes
+
+apt-get install --yes curl gpg
+
+curl --location --fail-with-body \
+  "https://packages.microsoft.com/keys/microsoft.asc" \
+  --output microsoft.asc
+
+cat microsoft.asc | gpg --dearmor --output microsoft-prod.gpg
+
+install -D --owner root --group root --mode 644 microsoft-prod.gpg /usr/share/keyrings/microsoft-prod.gpg
+
+echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/24.04/prod noble main" > /etc/apt/sources.list.d/mssql-release.list
+
+apt-get update --yes
+
+apt-cache policy msodbcsql18
+
+apt-cache policy mssql-tools18
+```
+
 ## Maintenance
 
 Maintenance of this component is scheduled in this [workflow](https://github.com/ministryofjustice/analytical-platform/blob/main/.github/workflows/schedule-issue-actions-runner.yml), which generates a maintenance ticket as per this [example](https://github.com/ministryofjustice/analytical-platform/issues/5906).
