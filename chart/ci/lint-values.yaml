@@ -10,3 +10,13 @@ github:
 serviceAccount:
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/this-is-not-a-real-role
+
+hostAliases:
+  - ip: "127.0.0.1"
+    hostnames:
+      - "foo.local"
+      - "bar.local"
+  - ip: "127.0.0.2"
+    hostnames:
+      - "baz.local"
+      - "qux.local"
