@@ -37,6 +37,8 @@ spec:
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             resources:
               {{- toYaml .Values.resources | nindent 14 }}
+            hostAliases:
+              {{- toYaml .Values.hostAliases | nindent 14 }}
             env:
               - name: EPHEMERAL
                 value: "true"

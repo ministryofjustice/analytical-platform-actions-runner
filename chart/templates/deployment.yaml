@@ -46,4 +46,6 @@ spec:
               value: {{ .Values.github.runner.labels | quote }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          hostAliases:
+            {{- toYaml .Values.hostAliases | nindent 12 }}
 {{- end }}
