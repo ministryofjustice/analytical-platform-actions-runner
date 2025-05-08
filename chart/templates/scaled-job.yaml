@@ -37,8 +37,7 @@ spec:
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             resources:
               {{- toYaml .Values.resources | nindent 14 }}
-            hostAliases:
-              {{- toYaml .Values.hostAliases | nindent 14 }}
+
             env:
               - name: EPHEMERAL
                 value: "true"
@@ -51,6 +50,8 @@ spec:
                   secretKeyRef:
                     name: {{ .Values.github.tokenSecretName }}
                     key: {{ .Values.github.tokenSecretKey }}
+        hostAliases:
+          {{- toYaml .Values.hostAliases | nindent 10 }}
         {{- if .Values.ephemeral.karpenter.enabled }}
         restartPolicy: Never
         affinity:
