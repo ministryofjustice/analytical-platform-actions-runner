@@ -1,6 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
 
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:a658d4be9ef8f95742fa7ff630226d0754ece827c6de984b7ac406866f56d653
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:932333528e27f2be8ae92535c4c3c2c1030a4cf368abbec1cf61d9ee8aa7cf41
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform (analytical-platform@digital.justice.gov.uk)" \
@@ -14,8 +14,8 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.323.0" \
-    ACTIONS_RUNNER_PKG_SHA="0dbc9bf5a58620fc52cb6cc0448abcca964a8d74b5f39773b7afcad9ab691e19" \
+    ACTIONS_RUNNER_VERSION="2.325.0" \
+    ACTIONS_RUNNER_PKG_SHA="5020da7139d85c776059f351e0de8fdec753affc9c558e892472d43ebeb518f4" \
     MICROSOFT_SQL_ODBC_VERSION="18.5.1.1-1" \
     MICROSOFT_SQL_TOOLS_VERSION="18.4.1.1-1" \
     PATH="/opt/mssql-tools18/bin:${PATH}"
@@ -41,7 +41,7 @@ chown --recursive ${CONTAINER_USER}:${CONTAINER_GROUP} ${CONTAINER_HOME}
 apt-get update
 
 apt-get install --yes --no-install-recommends \
-  "apt-transport-https=2.7.14build2" \
+  "apt-transport-https=2.8.3" \
   "ca-certificates=20240203" \
   "curl=8.5.0-2ubuntu10.6" \
   "gettext=0.21-14ubuntu2" \
@@ -50,7 +50,7 @@ apt-get install --yes --no-install-recommends \
   "gpg=2.4.4-2ubuntu17.2" \
   "jq=1.7.1-3build1" \
   "libicu-dev=74.2-1ubuntu3.1" \
-  "libsqlite3-dev=3.45.1-1ubuntu2.1" \
+  "libsqlite3-dev=3.45.1-1ubuntu2.3" \
   "lsb-release=12.0-2"
 
 apt-get clean
