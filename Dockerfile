@@ -45,7 +45,7 @@ apt-get install --yes --no-install-recommends \
   "ca-certificates=20240203" \
   "curl=8.5.0-2ubuntu10.6" \
   "gettext=0.21-14ubuntu2" \
-  "git=1:2.43.0-1ubuntu7.2" \
+  "git=1:2.43.0-1ubuntu7.3" \
   "gcc=4:13.2.0-7ubuntu1" \
   "gpg=2.4.4-2ubuntu17.3" \
   "jq=1.7.1-3build1" \
