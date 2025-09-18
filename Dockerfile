@@ -1,6 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
 
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:bd47de2dd50fdb528b59d3a3eff2d1a8618f8e1da8ed8e2daebda71da9c0062f
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:363abfc64946da88aa746fc29c9ddd7e2d64fa4225b4a094744bed0961270686
 
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
@@ -15,8 +15,8 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.327.1" \
-    ACTIONS_RUNNER_PKG_SHA="d68ac1f500b747d1271d9e52661c408d56cffd226974f68b7dc813e30b9e0575" \
+    ACTIONS_RUNNER_VERSION="2.328.0" \
+    ACTIONS_RUNNER_PKG_SHA="01066fad3a2893e63e6ca880ae3a1fad5bf9329d60e77ee15f2b97c148c3cd4e" \
     MICROSOFT_SQL_ODBC_VERSION="18.5.1.1-1" \
     MICROSOFT_SQL_TOOLS_VERSION="18.4.1.1-1" \
     PATH="/opt/mssql-tools18/bin:${PATH}"
@@ -51,7 +51,7 @@ apt-get install --yes --no-install-recommends \
   "gpg=2.4.4-2ubuntu17.3" \
   "jq=1.7.1-3ubuntu0.24.04.1" \
   "libicu-dev=74.2-1ubuntu3.1" \
-  "libsqlite3-dev=3.45.1-1ubuntu2.4" \
+  "libsqlite3-dev=3.45.1-1ubuntu2.5" \
   "lsb-release=12.0-2"
 
 apt-get clean

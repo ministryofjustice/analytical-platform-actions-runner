@@ -56,6 +56,8 @@ apt-cache policy ${PACKAGE} # for example curl, git or gpg
 
 Releases for GitHub Actions Runner are maintained on [GitHub](https://github.com/actions/runner/releases).
 
+`ACTIONS_RUNNER_PKG_SHA` is found under **SHA-256 Checksums** in the new version release notes. Use the checksum for `actions-runner-linux-x64-{VERSION_NUMBER}.tar.gz`
+
 ### Microsoft ODBC driver for SQL Server
 
 The latest version of Microsoft ODBC driver for SQL Server can be obtained by running:
