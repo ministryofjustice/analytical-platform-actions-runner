@@ -43,7 +43,7 @@ apt-get update
 
 apt-get install --yes --no-install-recommends \
   "apt-transport-https=2.8.3" \
-  "ca-certificates=20240203" \
+  "ca-certificates=20250419" \
   "curl=8.5.0-2ubuntu10.6" \
   "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.3" \
