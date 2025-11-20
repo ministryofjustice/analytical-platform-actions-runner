@@ -1,6 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
 
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:ef59d9e82939bbce08973bdffb8761b025f75369fb7d2882cdc4938b5a9e992e
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:af5c33fa94f3cc33b8e97937939136a6b04197e6dadfcfb3b6e33ae1bf41e79a
 
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
@@ -15,7 +15,7 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.329.0" \
+    ACTIONS_RUNNER_VERSION="2.330.0" \
     ACTIONS_RUNNER_PKG_SHA="194f1e1e4bd02f80b7e9633fc546084d8d4e19f3928a324d512ea53430102e1d" \
     MICROSOFT_SQL_ODBC_VERSION="18.5.1.1-1" \
     MICROSOFT_SQL_TOOLS_VERSION="18.4.1.1-1" \
