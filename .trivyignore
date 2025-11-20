@@ -1,6 +1,7 @@
 # Node.js
 # CVE-2024-21538
 CVE-2024-21538
+CVE-2025-64756
 
 ## Trivy: misreading due to heredoc structure
 AVD-DS-0017
