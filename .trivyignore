@@ -9,3 +9,11 @@ AVD-DS-0029
 
 ## Trivy: Healthchecks applied downstream
 AVD-DS-0026
+
+# linux-libc-dev (kernel headers)
+# These CVEs are in the Linux kernel, not the container. linux-libc-dev only provides
+# header files for compilation - the actual kernel runs on the Kubernetes node host.
+# Container isolation (seccomp, namespaces, capabilities) prevents exploitation.
+# The host kernel is patched separately by the platform/infrastructure team.
+## CVE-2025-38666: AppleTalk AARP proxy use-after-free - obsolete protocol, requires kernel module loading (blocked in containers)
+CVE-2025-38666
