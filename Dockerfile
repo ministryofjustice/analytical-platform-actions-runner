@@ -17,8 +17,8 @@ ENV CONTAINER_USER="runner" \
     DEBIAN_FRONTEND="noninteractive" \
     ACTIONS_RUNNER_VERSION="2.330.0" \
     ACTIONS_RUNNER_PKG_SHA="af5c33fa94f3cc33b8e97937939136a6b04197e6dadfcfb3b6e33ae1bf41e79a" \
-    MICROSOFT_SQL_ODBC_VERSION="18.5.1.1-1" \
-    MICROSOFT_SQL_TOOLS_VERSION="18.4.1.1-1" \
+    MICROSOFT_SQL_ODBC_VERSION="18.6.1.1-1" \
+    MICROSOFT_SQL_TOOLS_VERSION="18.6.1.1-1" \
     PATH="/opt/mssql-tools18/bin:${PATH}"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
@@ -48,7 +48,7 @@ apt-get install --yes --no-install-recommends \
   "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.3" \
   "gcc=4:13.2.0-7ubuntu1" \
-  "gpg=2.4.4-2ubuntu17.3" \
+  "gpg=2.4.4-2ubuntu17.4" \
   "jq=1.7.1-3ubuntu0.24.04.1" \
   "libicu-dev=74.2-1ubuntu3.1" \
   "libsqlite3-dev=3.45.1-1ubuntu2.5" \
