@@ -17,3 +17,6 @@ AVD-DS-0026
 # The host kernel is patched separately by the platform/infrastructure team.
 ## CVE-2025-38666: AppleTalk AARP proxy use-after-free - obsolete protocol, requires kernel module loading (blocked in containers)
 CVE-2025-38666
+
+## CVE-2025-68973 - Ubuntu dependencies (gpg)
+CVE-2025-68973
