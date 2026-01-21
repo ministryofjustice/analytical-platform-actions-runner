@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   pullPolicy: IfNotPresent
   repository: ghcr.io/ministryofjustice/analytical-platform-actions-runner
-  tag: 2.330.0-2
+  tag: 2.330.0-5
 
 imagePullSecrets: []
 
