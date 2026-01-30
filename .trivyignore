@@ -1,7 +1,7 @@
 # Node.js
 # CVE-2024-21538
-CVE-2024-21538
-CVE-2025-64756
+#CVE-2024-21538
+#CVE-2025-64756
 CVE-2026-23950 exp:2026-02-21
 
 ## Trivy: misreading due to heredoc structure
@@ -17,7 +17,7 @@ AVD-DS-0026
 # Container isolation (seccomp, namespaces, capabilities) prevents exploitation.
 # The host kernel is patched separately by the platform/infrastructure team.
 ## CVE-2025-38666: AppleTalk AARP proxy use-after-free - obsolete protocol, requires kernel module loading (blocked in containers)
-CVE-2025-38666
+#CVE-2025-38666
 
 ## CVE-2026-23745 - (Node dependency - Tar)
 CVE-2026-23745 exp:2026-02-02
