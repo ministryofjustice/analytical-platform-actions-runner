@@ -15,10 +15,10 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.328.0" \
-    ACTIONS_RUNNER_PKG_SHA="01066fad3a2893e63e6ca880ae3a1fad5bf9329d60e77ee15f2b97c148c3cd4e" \
-    MICROSOFT_SQL_ODBC_VERSION="18.5.1.1-1" \
-    MICROSOFT_SQL_TOOLS_VERSION="18.4.1.1-1" \
+    ACTIONS_RUNNER_VERSION="2.331.0" \
+    ACTIONS_RUNNER_PKG_SHA="5fcc01bd546ba5c3f1291c2803658ebd3cedb3836489eda3be357d41bfcf28a7" \
+    MICROSOFT_SQL_ODBC_VERSION="18.6.1.1-1" \
+    MICROSOFT_SQL_TOOLS_VERSION="18.6.1.1-1" \
     PATH="/opt/mssql-tools18/bin:${PATH}"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
