@@ -1,6 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
 
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:363abfc64946da88aa746fc29c9ddd7e2d64fa4225b4a094744bed0961270686
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:2840d5f4a6a1a8eb11e0d493bf0bbc030442d48e902e99bbc7127b76f9775b1e
 
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
@@ -48,7 +48,7 @@ apt-get install --yes --no-install-recommends \
   "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.3" \
   "gcc=4:13.2.0-7ubuntu1" \
-  "gpg=2.4.4-2ubuntu17.3" \
+  "gpg=2.4.4-2ubuntu17.4" \
   "jq=1.7.1-3ubuntu0.24.04.1" \
   "libicu-dev=74.2-1ubuntu3.1" \
   "libsqlite3-dev=3.45.1-1ubuntu2.5" \
