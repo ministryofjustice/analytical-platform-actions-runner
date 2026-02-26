@@ -29,7 +29,7 @@ commandTests:
   - name: "actions-runner"
     command: "bash"
     args: ["run.sh", "--version"]
-    expectedOutput: ["2.331.0"]
+    expectedOutput: ["2.332.0"]
 
   - name: "sqlcmd"
     command: "sqlcmd"
