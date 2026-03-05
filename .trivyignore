@@ -2,8 +2,8 @@
 # CVE-2024-21538
 CVE-2024-21538
 CVE-2025-64756
-CVE-2026-23950 exp:2026-03-04
-CVE-2026-25547 exp:2026-03-04
+CVE-2026-23950 exp:2026-03-20
+CVE-2026-25547 exp:2026-03-20
 
 ## Trivy: misreading due to heredoc structure
 AVD-DS-0017
@@ -23,15 +23,19 @@ CVE-2025-38561 exp:2026-03-04
 CVE-2025-39698 exp:2026-03-04
 CVE-2025-37849 exp:2026-03-02
 
-## CVE-2026-23745 - (Node dependency - Tar)
+## (Node dependency - Tar)
 CVE-2026-23745 exp:2026-03-17
 CVE-2026-24842 exp:2026-03-17
 CVE-2026-26960 exp:2026-03-17
+GHSA-qffp-2rhf-9h96 exp:2026-03-20
 
 ## CVE-2026-26996 - (Node dependency - minimatch)
-CVE-2026-26996 exp:2026-03-04
+CVE-2026-26996 exp:2026-03-20
 
 ## CVE-2026-27903 - (Node dependency - minimatch)
 ## CVE-2026-27904 - (Node dependency - minimatch)
 CVE-2026-27903
 CVE-2026-27904
+
+
+
