@@ -19,9 +19,9 @@ AVD-DS-0026
 # The host kernel is patched separately by the platform/infrastructure team.
 ## CVE-2025-38666: AppleTalk AARP proxy use-after-free - obsolete protocol, requires kernel module loading (blocked in containers)
 CVE-2025-38666
-CVE-2025-38561 exp:2026-03-04
-CVE-2025-39698 exp:2026-03-04
-CVE-2025-37849 exp:2026-03-02
+## CVE-2025-38561 exp:2026-03-04
+## CVE-2025-39698 exp:2026-03-04
+## CVE-2025-37849 exp:2026-03-02
 
 ## (Node dependency - Tar)
 CVE-2026-23745 exp:2026-03-17
@@ -29,6 +29,8 @@ CVE-2026-24842 exp:2026-03-17
 CVE-2026-26960 exp:2026-03-17
 GHSA-qffp-2rhf-9h96 exp:2026-03-20
 CVE-2026-29786 exp:2026-04-09
+CVE-2026-31802 exp:2026-03-19
+
 ## CVE-2026-26996 - (Node dependency - minimatch)
 CVE-2026-26996 exp:2026-03-20
 
@@ -36,6 +38,3 @@ CVE-2026-26996 exp:2026-03-20
 ## CVE-2026-27904 - (Node dependency - minimatch)
 CVE-2026-27903
 CVE-2026-27904
-
-
-
