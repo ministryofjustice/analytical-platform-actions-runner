@@ -21,12 +21,14 @@ AVD-DS-0026
 CVE-2025-38666
 
 ## (Node dependency - Tar)
-CVE-2026-23745 exp:2026-03-17
-CVE-2026-24842 exp:2026-03-17
-CVE-2026-26960 exp:2026-03-17
-GHSA-qffp-2rhf-9h96 exp:2026-03-20
-CVE-2026-29786 exp:2026-04-09
-CVE-2026-31802 exp:2026-03-19
+# This dependency comes from the GitHub Actions runner we install. We are currently on the latest version ACTIONS_RUNNER_VERSION="2.332.0"
+# When the new version is released and we update, check these again.
+CVE-2026-23745 exp:2026-03-30
+CVE-2026-24842 exp:2026-03-30
+CVE-2026-26960 exp:2026-03-30
+GHSA-qffp-2rhf-9h96 exp:2026-03-30
+CVE-2026-29786 exp:2026-03-30
+CVE-2026-31802 exp:2026-03-30
 
 ## CVE-2026-26996 - (Node dependency - minimatch)
 CVE-2026-26996 exp:2026-03-20
