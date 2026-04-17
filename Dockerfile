@@ -1,6 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
 
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:b1940c8ecf8ff591053cc5db0303fb882f9fafec50f26892a870bcbe1b30d25a
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:748740465d0aadaa69ab6e6c295892f17d7a8f44a85090dbb571ec0bb8c5674f
 
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
@@ -15,10 +15,10 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.332.0" \
-    ACTIONS_RUNNER_PKG_SHA="f2094522a6b9afeab07ffb586d1eb3f190b6457074282796c497ce7dce9e0f2a" \
-    MICROSOFT_SQL_ODBC_VERSION="18.6.1.1-1" \
-    MICROSOFT_SQL_TOOLS_VERSION="18.6.1.1-1" \
+    ACTIONS_RUNNER_VERSION="2.333.1" \
+    ACTIONS_RUNNER_PKG_SHA="18f8f68ed1892854ff2ab1bab4fcaa2f5abeedc98093b6cb13638991725cab74" \
+    MICROSOFT_SQL_ODBC_VERSION="18.6.2.1-1" \
+    MICROSOFT_SQL_TOOLS_VERSION="18.6.2.1-1" \
     PATH="/opt/mssql-tools18/bin:${PATH}"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
