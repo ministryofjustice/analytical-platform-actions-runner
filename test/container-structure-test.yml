@@ -53,6 +53,6 @@ fileExistenceTests:
     path: "/actions-runner/run.sh"
     shouldExist: true
 
-  - name: "/opt/microsoft/msodbcsql18/lib64/libmsodbcsql-18.6.so.1.1"
-    path: "/opt/microsoft/msodbcsql18/lib64/libmsodbcsql-18.6.so.1.1"
+  - name: "/opt/microsoft/msodbcsql18/lib64/libmsodbcsql-18.6.so.2.1"
+    path: "/opt/microsoft/msodbcsql18/lib64/libmsodbcsql-18.6.so.2.1"
     shouldExist: true
