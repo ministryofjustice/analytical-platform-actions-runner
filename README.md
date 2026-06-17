@@ -42,7 +42,9 @@ docker image inspect --format='{{ index .RepoDigests 0 }}' public.ecr.aws/ubuntu
 
 ### APT Packages
 
-The latest versions of the APT packages can be obtained by running the following
+The latest versions of the APT packages can be obtained by visiting `https://packages.ubuntu.com/noble/${PACKAGE}` (for example [curl](https://packages.ubuntu.com/noble/curl) or [jq](https://packages.ubuntu.com/noble/jq)).
+
+Alternatively, if you are not running in a dev container, you can run the following
 
 ```bash
 docker run -it --rm --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:24.04
