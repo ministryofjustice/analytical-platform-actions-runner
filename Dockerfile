@@ -44,12 +44,12 @@ apt-get update
 apt-get install --yes --no-install-recommends \
   "apt-transport-https=2.8.3" \
   "ca-certificates=20240203" \
-  "curl=8.5.0-2ubuntu10.8" \
+  "curl=8.5.0-2ubuntu10.9" \
   "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.3" \
   "gcc=4:13.2.0-7ubuntu1" \
   "gpg=2.4.4-2ubuntu17.4" \
-  "jq=1.7.1-3ubuntu0.24.04.1" \
+  "jq=1.7.1-3ubuntu0.24.04.2" \
   "libicu-dev=74.2-1ubuntu3.1" \
   "libsqlite3-dev=3.45.1-1ubuntu2.5" \
   "lsb-release=12.0-2"
