@@ -17,6 +17,6 @@ jobs:
       contents: write
       id-token: write
       packages: write
-    uses: ministryofjustice/analytical-platform-github-actions/.github/workflows/reusable-container-release.yml@72f9c303ec3becced97e2d4472122fee783ff4a4 # v8.0.1
+    uses: ministryofjustice/analytical-platform-github-actions/.github/workflows/reusable-container-release.yml@497b26456c1f0cff118cf5f663b66794d368f3e8 # v8.0.2
     secrets:
       release-failure-webhook-url: ${{ secrets.ANALYTICAL_PLATFORM_RELEASE_FAILURE_SLACK_WEBHOOK_URL }}

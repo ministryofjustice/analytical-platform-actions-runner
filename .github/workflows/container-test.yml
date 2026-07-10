@@ -13,4 +13,4 @@ jobs:
     name: Container Test
     permissions:
       contents: read
-    uses: ministryofjustice/analytical-platform-github-actions/.github/workflows/reusable-container-test.yml@72f9c303ec3becced97e2d4472122fee783ff4a4 # v8.0.1
+    uses: ministryofjustice/analytical-platform-github-actions/.github/workflows/reusable-container-test.yml@497b26456c1f0cff118cf5f663b66794d368f3e8 # v8.0.2
