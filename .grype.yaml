@@ -50,3 +50,11 @@ ignore:
   # undici < 6.27.0
   - vulnerability: GHSA-vxpw-j846-p89q
     reason: "Bundled in Actions Runner externals/node24 - not user-installable"
+
+  # sigstore < 4.1.1
+  - vulnerability: GHSA-52v5-jr5w-gjxr
+    reason: "Bundled in Actions Runner externals/node20 - not user-installable"
+
+  # sigstore < 4.1.1
+  - vulnerability: GHSA-52v5-jr5w-gjxr
+    reason: "Bundled in Actions Runner externals/node24 - not user-installable"
