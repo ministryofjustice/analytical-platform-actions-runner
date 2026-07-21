@@ -47,6 +47,18 @@ ignore:
   - vulnerability: GHSA-9ppj-qmqm-q256
     reason: "Bundled in Actions Runner externals/node20 - not user-installable"
 
+  # tar <= 7.5.17
+  - vulnerability: GHSA-8x88-c5mf-7j5w
+    reason: "Bundled in Actions Runner externals/node20 and externals/node24 - not user-installable. exp:2026-08-01"
+
+  # tar <= 7.5.18
+  - vulnerability: GHSA-23hp-3jrh-7fpw
+    reason: "Bundled in Actions Runner externals/node20 and externals/node24 - not user-installable. exp:2026-08-01"
+
+  # brace-expansion >= 2.0.0, < 2.1.2 and >= 3.0.0, < 5.0.7
+  - vulnerability: GHSA-3jxr-9vmj-r5cp
+    reason: "Bundled in Actions Runner externals/node20 and externals/node24 - not user-installable. exp:2026-08-01"
+
   # undici < 6.27.0
   - vulnerability: GHSA-vxpw-j846-p89q
     reason: "Bundled in Actions Runner externals/node24 - not user-installable"
