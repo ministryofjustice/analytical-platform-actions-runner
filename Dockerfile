@@ -1,6 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
 
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:b1940c8ecf8ff591053cc5db0303fb882f9fafec50f26892a870bcbe1b30d25a
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:be20a0347f238b7d373edddc55923443b21dd9a60277bf8a93e43458cd0bf2fc
 
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
@@ -17,8 +17,8 @@ ENV CONTAINER_USER="runner" \
     DEBIAN_FRONTEND="noninteractive" \
     ACTIONS_RUNNER_VERSION="2.332.0" \
     ACTIONS_RUNNER_PKG_SHA="f2094522a6b9afeab07ffb586d1eb3f190b6457074282796c497ce7dce9e0f2a" \
-    MICROSOFT_SQL_ODBC_VERSION="18.6.1.1-1" \
-    MICROSOFT_SQL_TOOLS_VERSION="18.6.1.1-1" \
+    MICROSOFT_SQL_ODBC_VERSION="18.6.2.1-1" \
+    MICROSOFT_SQL_TOOLS_VERSION="18.6.2.1-1" \
     PATH="/opt/mssql-tools18/bin:${PATH}"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
@@ -43,15 +43,15 @@ apt-get update
 
 apt-get install --yes --no-install-recommends \
   "apt-transport-https=2.8.3" \
-  "ca-certificates=20240203" \
-  "curl=8.5.0-2ubuntu10.8" \
+  "ca-certificates=20260601~24.04.1" \
+  "curl=8.5.0-2ubuntu10.11" \
   "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.3" \
   "gcc=4:13.2.0-7ubuntu1" \
   "gpg=2.4.4-2ubuntu17.4" \
-  "jq=1.7.1-3ubuntu0.24.04.1" \
+  "jq=1.7.1-3ubuntu0.24.04.2" \
   "libicu-dev=74.2-1ubuntu3.1" \
-  "libsqlite3-dev=3.45.1-1ubuntu2.5" \
+  "libsqlite3-dev=3.45.1-1ubuntu2.7" \
   "lsb-release=12.0-2"
 
 apt-get clean
