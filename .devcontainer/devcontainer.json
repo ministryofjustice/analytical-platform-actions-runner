@@ -3,9 +3,9 @@
   "image": "ghcr.io/ministryofjustice/devcontainer-base:latest",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:4": {},
-    "ghcr.io/ministryofjustice/devcontainer-feature/apm:": {},
-    "ghcr.io/ministryofjustice/devcontainer-feature/container-structure-test:1": {},
-    "ghcr.io/ministryofjustice/devcontainer-feature/kubernetes:": {},
+    "ghcr.io/ministryofjustice/devcontainer-feature/apm:1.0.0": {},
+    "ghcr.io/ministryofjustice/devcontainer-feature/container-structure-test:1.0.1": {},
+    "ghcr.io/ministryofjustice/devcontainer-feature/kubernetes:1.1.2": {},
     "ghcr.io/ministryofjustice/devcontainer-feature/static-analysis:2": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
