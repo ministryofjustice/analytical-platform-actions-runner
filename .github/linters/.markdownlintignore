@@ -1,2 +1,0 @@
-# Ignore Copilot prompt files - they're for AI consumption, not human documentation
-.github/prompts/**/*.md
