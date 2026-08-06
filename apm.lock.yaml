@@ -1,0 +1,15 @@
+lockfile_version: '1'
+generated_at: '2026-08-06T15:31:38.080962+00:00'
+apm_version: 0.28.0
+dependencies:
+- repo_url: ministryofjustice/data-platform-ai-toolkit
+  name: universal
+  host: github.com
+  resolved_commit: 943ecee009ac2d9717811b90af2701e4134c1bcf
+  resolved_ref: main
+  version: 1.0.0
+  virtual_path: toolkits/universal
+  is_virtual: true
+  package_type: apm_package
+  content_hash: sha256:d375ca1db8fc999bc92d31994eba9aa81611fb48d0750d557e4d27ab1249f68e
+deployments: []
