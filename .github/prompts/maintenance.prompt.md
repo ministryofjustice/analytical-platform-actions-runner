@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD013 -->
 ---
 description: "Update the Ubuntu base image digest, pinned APT package versions, Microsoft ODBC driver for SQL Server versions, and test expectations in the Dockerfile and test files, then open a pull request"
 tools:
