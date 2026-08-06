@@ -20,7 +20,7 @@ In one pull request, for the base image and packages already declared in the `Do
 
 1. Update the pinned base image digest to the latest published digest for the image and tag in the `FROM` line (for `linux/amd64`).
 2. Refresh the pinned APT package versions to the latest available for that base image, preserving the current package list.
-3. Update the Microsoft ODBC driver for SQL Server versions (`MICROSOFT_SQL_ODBC_VERSION` and `MICROSOFT_SQL_TOOLS_VERSION`) to the latest available versions. First check for updates within the current major version. If no updates are available within the current major version, check the next major version and upgrade if available (with a warning in the PR description).
+3. Update the Microsoft ODBC driver for SQL Server versions (`MICROSOFT_SQL_ODBC_VERSION` and `MICROSOFT_SQL_TOOLS_VERSION`) to the latest available versions. First check for minor/patch upgrades within the current major version. If already on the latest for that major version, check for the absolute latest version (which may be a newer major version). If upgrading to a new major version, include a warning in the PR description.
 4. Update the test expectations in `test/container-structure-test.yml` to match the new versions.
 
 Do not assume a specific Ubuntu version or package set. Always read the current values from the `Dockerfile`.
@@ -77,58 +77,65 @@ docker run --rm --platform linux/amd64 "$IMAGE" \
 
 - Read the current `MICROSOFT_SQL_ODBC_VERSION` and `MICROSOFT_SQL_TOOLS_VERSION` from the environment variables in `Dockerfile`.
 - Extract the current major version number from the package names in the `apt-get install` block (e.g., `msodbcsql18` → major version `18`).
-- Start a temporary container using the same base image and check the candidate versions for the current major version.
+4. Update the Microsoft ODBC driver for SQL Server versions.
+
+- Read the current `MICROSOFT_SQL_ODBC_VERSION` and `MICROSOFT_SQL_TOOLS_VERSION` from the environment variables in `Dockerfile`.
+- Extract the current major version number from the package names in the `apt-get install` block (e.g., `msodbcsql18` → major version `18`).
+- Start a temporary container and set up the Microsoft repository, then check for updates:
 
 ```bash
 # Extract current major version from Dockerfile (e.g., 18 from msodbcsql18)
 CURRENT_MAJOR_VERSION="$(grep -oP 'msodbcsql\K\d+' Dockerfile | head -1)"
+CURRENT_ODBC_VERSION="$(grep -oP 'MICROSOFT_SQL_ODBC_VERSION="\K[^"]+' Dockerfile)"
+CURRENT_TOOLS_VERSION="$(grep -oP 'MICROSOFT_SQL_TOOLS_VERSION="\K[^"]+' Dockerfile)"
 
-docker run --rm --platform linux/amd64 "$IMAGE" \
-  bash -c "apt-get update --yes && \
-  apt-get install --yes curl gpg && \
-  curl --location --fail-with-body \
-    'https://packages.microsoft.com/keys/microsoft.asc' \
-    --output microsoft.asc && \
-  cat microsoft.asc | gpg --dearmor --output microsoft-prod.gpg && \
-  install -D --owner root --group root --mode 644 microsoft-prod.gpg /usr/share/keyrings/microsoft-prod.gpg && \
-  source /etc/os-release && \
-  echo \"deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/\${VERSION_ID}/prod \$(lsb_release -cs) main\" > /etc/apt/sources.list.d/mssql-release.list && \
-  apt-get update --yes && \
-  apt-cache policy msodbcsql${CURRENT_MAJOR_VERSION} && \
-  apt-cache policy mssql-tools${CURRENT_MAJOR_VERSION}"
+docker run --rm --platform linux/amd64 "$IMAGE" bash<<ENDSCRIPT
+apt-get update -y >/dev/null 2>&1
+apt-get install -y curl gpg lsb-release >/dev/null 2>&1
+curl -sL 'https://packages.microsoft.com/keys/microsoft.asc' | gpg --dearmor > /usr/share/keyrings/microsoft-prod.gpg 2>/dev/null
+source /etc/os-release
+CODENAME=\$(lsb_release -cs)
+echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/\${VERSION_ID}/prod \${CODENAME} main" > /etc/apt/sources.list.d/mssql-release.list
+apt-get update -y >/dev/null 2>&1
+
+# Check latest version for current major version
+echo "=== Current major version (${CURRENT_MAJOR_VERSION}) ==="
+ODBC_CANDIDATE_CURRENT=\$(apt-cache policy msodbcsql${CURRENT_MAJOR_VERSION} | grep Candidate | awk '{print \$2}')
+TOOLS_CANDIDATE_CURRENT=\$(apt-cache policy mssql-tools${CURRENT_MAJOR_VERSION} | grep Candidate | awk '{print \$2}')
+echo "msodbcsql${CURRENT_MAJOR_VERSION}: \$ODBC_CANDIDATE_CURRENT"
+echo "mssql-tools${CURRENT_MAJOR_VERSION}: \$TOOLS_CANDIDATE_CURRENT"
+
+# Check if we're already on the latest for this major version
+if [ "\$ODBC_CANDIDATE_CURRENT" = "${CURRENT_ODBC_VERSION}" ] && [ "\$TOOLS_CANDIDATE_CURRENT" = "${CURRENT_TOOLS_VERSION}" ]; then
+  echo "Already on latest for major version ${CURRENT_MAJOR_VERSION}, checking for newer major versions..."
+
+  # Find the latest available package (any major version)
+  echo "=== Latest available (any version) ==="
+  LATEST_ODBC_PKG=\$(apt-cache search --names-only '^msodbcsql[0-9]+$' | sort -V | tail -1 | awk '{print \$1}')
+  LATEST_TOOLS_PKG=\$(apt-cache search --names-only '^mssql-tools[0-9]+$' | sort -V | tail -1 | awk '{print \$1}')
+
+  if [ -n "\$LATEST_ODBC_PKG" ]; then
+    LATEST_MAJOR=\$(echo \$LATEST_ODBC_PKG | grep -oP 'msodbcsql\K\d+')
+    ODBC_CANDIDATE_LATEST=\$(apt-cache policy \$LATEST_ODBC_PKG | grep Candidate | awk '{print \$2}')
+    TOOLS_CANDIDATE_LATEST=\$(apt-cache policy mssql-tools\${LATEST_MAJOR} | grep Candidate | awk '{print \$2}')
+
+    echo "Latest package: \$LATEST_ODBC_PKG (major version \$LATEST_MAJOR)"
+    echo "\$LATEST_ODBC_PKG: \$ODBC_CANDIDATE_LATEST"
+    echo "mssql-tools\${LATEST_MAJOR}: \$TOOLS_CANDIDATE_LATEST"
+    echo "UPGRADE_TO_MAJOR=\$LATEST_MAJOR"
+  fi
+fi
+ENDSCRIPT
 ```
 
-- Check if newer patch/minor versions are available for the current major version:
-  - **If yes**: Update `MICROSOFT_SQL_ODBC_VERSION` and `MICROSOFT_SQL_TOOLS_VERSION` to the new candidate versions and proceed with the PR.
-  - **If no** (current versions are already the latest for this major version): Check for the next major version.
-
-```bash
-# Only run this if current major version has no updates available
-NEXT_MAJOR_VERSION=$((CURRENT_MAJOR_VERSION + 1))
-
-docker run --rm --platform linux/amd64 "$IMAGE" \
-  bash -c "apt-get update --yes && \
-  apt-get install --yes curl gpg && \
-  curl --location --fail-with-body \
-    'https://packages.microsoft.com/keys/microsoft.asc' \
-    --output microsoft.asc && \
-  cat microsoft.asc | gpg --dearmor --output microsoft-prod.gpg && \
-  install -D --owner root --group root --mode 644 microsoft-prod.gpg /usr/share/keyrings/microsoft-prod.gpg && \
-  source /etc/os-release && \
-  echo \"deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/\${VERSION_ID}/prod \$(lsb_release -cs) main\" > /etc/apt/sources.list.d/mssql-release.list && \
-  apt-get update --yes && \
-  apt-cache policy msodbcsql${NEXT_MAJOR_VERSION} 2>/dev/null || echo 'Not available' && \
-  apt-cache policy mssql-tools${NEXT_MAJOR_VERSION} 2>/dev/null || echo 'Not available'"
-```
-
-- If the next major version is available:
-  - **Update the Dockerfile** to use the new major version:
-    - Change package names (e.g., `msodbcsql18` → `msodbcsql19`)
+- Analyze the output and determine the upgrade path:
+  - **If the candidate versions for the current major version are newer than what's in the Dockerfile**: Update `MICROSOFT_SQL_ODBC_VERSION` and `MICROSOFT_SQL_TOOLS_VERSION` to those versions (patch/minor upgrade within same major version).
+  - **If already on the latest for the current major version, and a newer major version exists**:
+    - Update the Dockerfile to use the new major version package names (e.g., `msodbcsql18` → `msodbcsql19`)
     - Update `MICROSOFT_SQL_ODBC_VERSION` and `MICROSOFT_SQL_TOOLS_VERSION` to the new versions
     - Update the PATH environment variable (e.g., `/opt/mssql-tools18/bin` → `/opt/mssql-tools19/bin`)
-  - **Include a warning section** in the PR description (see below)
-
-- If the next major version is not available, skip this step (no updates needed).
+    - Note this is a major version upgrade for the PR description
+  - **If already on the absolute latest version**: No updates needed for Microsoft SQL packages.
 
 5. Update the test file to reflect the new versions.
 
@@ -221,7 +228,7 @@ docker run --rm --platform linux/amd64 "$IMAGE" \
 - Keep platform assumption aligned to `linux/amd64`.
 - Do not add or remove packages. Update exactly the packages already pinned in the `Dockerfile`.
 - Keep all package installs pinned to explicit versions.
-- For Microsoft ODBC driver for SQL Server: First check for updates within the current major version. Only upgrade to the next major version if no updates are available for the current major version.
+- For Microsoft ODBC driver for SQL Server: First check for minor/patch upgrades within the current major version. If already on the latest for that major version, check for the absolute latest version available (which may be a newer major version). Upgrade to it if different from current version.
 - When upgrading Microsoft SQL packages to a new major version, update all related components (package names, PATH environment variable, and test expectations) and include a warning in the PR description.
 - Update the test file (`test/container-structure-test.yml`) to match the new versions in the `Dockerfile`.
 - Deliver all updates in the same branch and pull request.
