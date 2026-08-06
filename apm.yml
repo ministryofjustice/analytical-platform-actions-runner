@@ -1,0 +1,8 @@
+---
+version: 1.0.0
+name: analytical-platform-actions-runner
+targets:
+  - copilot
+dependencies:
+  apm:
+    - ministryofjustice/data-platform-ai-toolkit/toolkits/universal#main

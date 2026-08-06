@@ -161,8 +161,6 @@ docker run --rm --platform linux/amd64 "$IMAGE" \
 
 - Report the URL of the created pull request.
 
-Building and testing the image is handled by CI/CD, so it is not part of this runbook.
-
 ## Guardrails
 
 - Keep the base image repository and tag unchanged; derive them from the existing `FROM` line and only update the digest. Do not change the Ubuntu version.
