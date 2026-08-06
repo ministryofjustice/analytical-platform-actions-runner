@@ -1,6 +1,9 @@
 {
   "absolute": true,
-  "ignore": ["**/chart/templates/scaled-job.yaml"],
+  "ignore": [
+    "**/chart/templates/scaled-job.yaml",
+    "**/.github/prompts/**"
+  ],
   "reporters": ["consoleFull"],
   "threshold": 0
 }
