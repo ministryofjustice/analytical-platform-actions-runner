@@ -1,7 +1,7 @@
 ---
-name: 🦝 Super Linter
+name: Super Linter
 
-on:
+"on":
   pull_request:
     branches:
       - main
