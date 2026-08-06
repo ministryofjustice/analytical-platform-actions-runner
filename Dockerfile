@@ -1,6 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
 
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:22a8228e1e48cbe7e0e0f2056e752ffb8a35950cda150a4e5e16417200bec648
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:be20a0347f238b7d373edddc55923443b21dd9a60277bf8a93e43458cd0bf2fc
 
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
@@ -17,9 +17,9 @@ ENV CONTAINER_USER="runner" \
     DEBIAN_FRONTEND="noninteractive" \
     ACTIONS_RUNNER_VERSION="2.335.1" \
     ACTIONS_RUNNER_PKG_SHA="4ef2f25285f0ae4477f1fe1e346db76d2f3ebf03824e2ddd1973a2819bf6c8cf" \
-    MICROSOFT_SQL_ODBC_VERSION="17.11.1.1-1" \
-    MICROSOFT_SQL_TOOLS_VERSION="17.11.1.1-1" \
-    PATH="/opt/mssql-tools17/bin:${PATH}"
+    MICROSOFT_SQL_ODBC_VERSION="18.6.2.1-1" \
+    MICROSOFT_SQL_TOOLS_VERSION="18.6.2.1-1" \
+    PATH="/opt/mssql-tools18/bin:${PATH}"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
@@ -88,8 +88,8 @@ echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.g
 apt-get update --yes
 
 ACCEPT_EULA=Y apt-get install --yes \
-  "msodbcsql17=${MICROSOFT_SQL_ODBC_VERSION}" \
-  "mssql-tools17=${MICROSOFT_SQL_TOOLS_VERSION}"
+  "msodbcsql18=${MICROSOFT_SQL_ODBC_VERSION}" \
+  "mssql-tools18=${MICROSOFT_SQL_TOOLS_VERSION}"
 
 apt-get clean --yes
 
