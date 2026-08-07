@@ -79,3 +79,10 @@ ignore:
   # ip-address < 10.3.1
   - vulnerability: GHSA-mwp4-54f8-5fhr
     reason: "Bundled in Actions Runner externals/node20 and externals/node24 - not user-installable. exp:2026-09-01"
+
+  # node permission model bypass - High
+  - vulnerability: CVE-2026-58043
+    reason: "Bundled in Actions Runner externals/node20 - EOL, no fixed 20.x build exists upstream. Not user-installable. exp:2026-09-01"
+  # node permission model bypass - High
+  - vulnerability: CVE-2026-58043
+    reason: "Bundled in Actions Runner externals/node24 (24.18.0) - fix is 24.18.1, one patch behind. Not user-installable. exp:2026-09-01"
