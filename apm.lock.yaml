@@ -1,0 +1,61 @@
+lockfile_version: '1'
+generated_at: '2026-08-07T08:48:42.601219+00:00'
+apm_version: 0.28.0
+dependencies:
+- repo_url: ministryofjustice/data-platform-ai-toolkit
+  name: universal
+  host: github.com
+  resolved_commit: 943ecee009ac2d9717811b90af2701e4134c1bcf
+  resolved_ref: main
+  version: 1.0.0
+  virtual_path: toolkits/universal
+  is_virtual: true
+  package_type: apm_package
+  deployed_files:
+  - .github/instructions/language.instructions.md
+  - .github/instructions/ministryofjustice.instructions.md
+  deployed_file_hashes:
+    .github/instructions/language.instructions.md: sha256:70e9d0f220f2ceec1cf5b8088c9e199259670f9baa383b330ff3ba9e4107e655
+    .github/instructions/ministryofjustice.instructions.md: sha256:470dc2fbec601f32b14b73f6665a17dd7e3427c0bcdc5c8197c5e3905d30dfcc
+  content_hash: sha256:d375ca1db8fc999bc92d31994eba9aa81611fb48d0750d557e4d27ab1249f68e
+deployments:
+- kind: project-relative
+  target: copilot
+  value: .github/instructions/language.instructions.md
+  runtime: null
+  scope: project
+  owners:
+  - ministryofjustice/data-platform-ai-toolkit/toolkits/universal
+  active_owner: ministryofjustice/data-platform-ai-toolkit/toolkits/universal
+  content_hash: sha256:70e9d0f220f2ceec1cf5b8088c9e199259670f9baa383b330ff3ba9e4107e655
+- kind: project-relative
+  target: copilot
+  value: .github/instructions/ministryofjustice.instructions.md
+  runtime: null
+  scope: project
+  owners:
+  - ministryofjustice/data-platform-ai-toolkit/toolkits/universal
+  active_owner: ministryofjustice/data-platform-ai-toolkit/toolkits/universal
+  content_hash: sha256:470dc2fbec601f32b14b73f6665a17dd7e3427c0bcdc5c8197c5e3905d30dfcc
+- kind: uri
+  target: mcp
+  value: github
+  runtime: vscode
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+mcp_servers:
+- github
+mcp_configs:
+  github:
+    name: github
+    transport: http
+    registry: false
+    url: https://api.githubcopilot.com/mcp/
+mcp_target_servers:
+  vscode:
+  - github
+mcp_config_provenance:
+  github: universal

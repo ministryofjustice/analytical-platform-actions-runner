@@ -9,3 +9,4 @@ env/
 *.sha256
 terraform.tfstate
 .helm-deploy
+apm_modules/

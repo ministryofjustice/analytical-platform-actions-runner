@@ -4,6 +4,7 @@ extends: default
 ignore:
   - "**/chart/templates/*.yaml"
   - "**/chart/templates/tests/*.yaml"
+  - "**/apm.lock.yaml"
 
 rules:
   line-length:
