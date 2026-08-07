@@ -79,3 +79,7 @@ ignore:
   # ip-address < 10.3.1
   - vulnerability: GHSA-mwp4-54f8-5fhr
     reason: "Bundled in Actions Runner externals/node20 and externals/node24 - not user-installable. exp:2026-09-01"
+
+  # node < 22.23.2
+  - vulnerability: CVE-2026-58043
+    reason: "Bundled in Actions Runner externals/node20 and externals/node24 - not user-installable. exp:2026-09-01"
