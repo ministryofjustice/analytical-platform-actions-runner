@@ -86,3 +86,16 @@ ignore:
   # node permission model bypass - High
   - vulnerability: CVE-2026-58043
     reason: "Bundled in Actions Runner externals/node24 (24.18.0) - fix is 24.18.1, one patch behind. Not user-installable. exp:2026-09-01"
+
+  # node http/2 maxSessionMemory bypass (memory exhaustion) - High
+  - vulnerability: CVE-2026-56846
+    reason: "Bundled in Actions Runner externals/node20 (20.20.2) - Node 20 reached EOL 2026-04-30, no fixed 20.x build will ever be released upstream. Not user-installable. exp:2026-09-01"
+  # node http/2 maxSessionMemory bypass (memory exhaustion) - High
+  - vulnerability: CVE-2026-56846
+    reason: "Bundled in Actions Runner externals/node24 (24.16.0) - fix is 24.18.1, runner not yet bumped past this version. Not user-installable. exp:2026-09-01"
+  # node http/2 re-entrant send heap-use-after-free - High
+  - vulnerability: CVE-2026-56848
+    reason: "Bundled in Actions Runner externals/node20 (20.20.2) - Node 20 reached EOL 2026-04-30, no fixed 20.x build will ever be released upstream. Not user-installable. exp:2026-09-01"
+  # node http/2 re-entrant send heap-use-after-free - High
+  - vulnerability: CVE-2026-56848
+    reason: "Bundled in Actions Runner externals/node24 (24.16.0) - fix is 24.18.1, runner not yet bumped past this version. Not user-installable. exp:2026-09-01"
