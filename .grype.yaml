@@ -99,3 +99,10 @@ ignore:
   # node http/2 re-entrant send heap-use-after-free - High
   - vulnerability: CVE-2026-56848
     reason: "Bundled in Actions Runner externals/node24 (24.16.0) - fix is 24.18.1, runner not yet bumped past this version. Not user-installable. exp:2026-09-01"
+
+  # node http/2 sessions never clean up after GOAWAY on invalid protocol errors - High
+  - vulnerability: CVE-2026-48937
+    reason: "Bundled in Actions Runner externals/node20 (20.20.2) - Node 20 reached EOL 2026-04-30, no fixed 20.x build will ever be released upstream. Not user-installable. exp:2026-09-01"
+  # node http/2 sessions never clean up after GOAWAY on invalid protocol errors - High
+  - vulnerability: CVE-2026-48937
+    reason: "Bundled in Actions Runner externals/node24 (24.16.0) - fix is 24.17.0, runner not yet bumped past this version. Not user-installable. exp:2026-09-01"
