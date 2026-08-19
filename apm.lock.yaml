@@ -1,11 +1,11 @@
 lockfile_version: '1'
-generated_at: '2026-08-07T08:48:42.601219+00:00'
+generated_at: '2026-08-19T20:48:10.275845+00:00'
 apm_version: 0.28.0
 dependencies:
-- repo_url: ministryofjustice/data-platform-ai-toolkit
+- repo_url: ministryofjustice/ai-toolkit
   name: universal
   host: github.com
-  resolved_commit: 943ecee009ac2d9717811b90af2701e4134c1bcf
+  resolved_commit: 69e66f8ce36ead7125ab5d93840a8a16aa87d883
   resolved_ref: main
   version: 1.0.0
   virtual_path: toolkits/universal
@@ -15,9 +15,9 @@ dependencies:
   - .github/instructions/language.instructions.md
   - .github/instructions/ministryofjustice.instructions.md
   deployed_file_hashes:
-    .github/instructions/language.instructions.md: sha256:70e9d0f220f2ceec1cf5b8088c9e199259670f9baa383b330ff3ba9e4107e655
-    .github/instructions/ministryofjustice.instructions.md: sha256:470dc2fbec601f32b14b73f6665a17dd7e3427c0bcdc5c8197c5e3905d30dfcc
-  content_hash: sha256:d375ca1db8fc999bc92d31994eba9aa81611fb48d0750d557e4d27ab1249f68e
+    .github/instructions/language.instructions.md: sha256:dbbd7951e0cfcdff32b237f1b35ab62ce9f30ceb6c3674f8f1d028a2b7c7c9be
+    .github/instructions/ministryofjustice.instructions.md: sha256:e5f98f5dae901db79b6a869826fb40fcc051fe1ddd057e5fd4dc8d7822e1e652
+  content_hash: sha256:f503de05a01685575188eee0610cafd4ac2ed0688bf4848d16f5f5e0c41ab435
 deployments:
 - kind: project-relative
   target: copilot
@@ -25,18 +25,18 @@ deployments:
   runtime: null
   scope: project
   owners:
-  - ministryofjustice/data-platform-ai-toolkit/toolkits/universal
-  active_owner: ministryofjustice/data-platform-ai-toolkit/toolkits/universal
-  content_hash: sha256:70e9d0f220f2ceec1cf5b8088c9e199259670f9baa383b330ff3ba9e4107e655
+  - ministryofjustice/ai-toolkit/toolkits/universal
+  active_owner: ministryofjustice/ai-toolkit/toolkits/universal
+  content_hash: sha256:dbbd7951e0cfcdff32b237f1b35ab62ce9f30ceb6c3674f8f1d028a2b7c7c9be
 - kind: project-relative
   target: copilot
   value: .github/instructions/ministryofjustice.instructions.md
   runtime: null
   scope: project
   owners:
-  - ministryofjustice/data-platform-ai-toolkit/toolkits/universal
-  active_owner: ministryofjustice/data-platform-ai-toolkit/toolkits/universal
-  content_hash: sha256:470dc2fbec601f32b14b73f6665a17dd7e3427c0bcdc5c8197c5e3905d30dfcc
+  - ministryofjustice/ai-toolkit/toolkits/universal
+  active_owner: ministryofjustice/ai-toolkit/toolkits/universal
+  content_hash: sha256:e5f98f5dae901db79b6a869826fb40fcc051fe1ddd057e5fd4dc8d7822e1e652
 - kind: uri
   target: mcp
   value: github
