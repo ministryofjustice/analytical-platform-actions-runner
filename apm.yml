@@ -5,4 +5,4 @@ targets:
   - copilot
 dependencies:
   apm:
-    - ministryofjustice/data-platform-ai-toolkit/toolkits/universal#main
+    - ministryofjustice/ai-toolkit/toolkits/universal#main
