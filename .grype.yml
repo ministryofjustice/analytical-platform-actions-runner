@@ -10,3 +10,10 @@ ignore:
       Actions runner image. It is upstream to this repository and will be resolved
       when the runner image is updated to a version that includes a fixed Node
       release.
+
+  - vulnerability: GHSA-r292-9mhp-454m
+    reason: |
+      DoS in the `tar` package bundled with npm's node_modules inside the GitHub
+      Actions runner image's node20 and node24 externals (npm bundles vulnerable
+      tar 6.2.1 / 7.5.15). This is upstream to this repository and will be
+      resolved when the runner image ships an npm build with tar >= 7.5.21.
