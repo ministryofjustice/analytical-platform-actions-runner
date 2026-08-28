@@ -106,3 +106,7 @@ ignore:
   # node http/2 sessions never clean up after GOAWAY on invalid protocol errors - High
   - vulnerability: CVE-2026-48937
     reason: "Bundled in Actions Runner externals/node24 (24.16.0) - fix is 24.17.0, runner not yet bumped past this version. Not user-installable. exp:2026-09-01"
+
+  # pacote < 21.5.1 - High
+  - vulnerability: GHSA-w4pp-8pjf-rmxw
+    reason: "Bundled in Actions Runner externals/node24/lib/node_modules/npm/node_modules/pacote - not user-installable. exp:2026-09-01"
