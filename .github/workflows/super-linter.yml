@@ -15,7 +15,7 @@ jobs:
       contents: read
       packages: read
       statuses: write
-    uses: ministryofjustice/data-platform-github-actions/.github/workflows/super-linter.yml@f48cf9157c3eae2dcecf5173a474577aabcd37a5 # v4.1.2
+    uses: ministryofjustice/data-platform-github-actions/.github/workflows/super-linter.yml@7254f4a35b6251bf442bf84335b6bd27f9d88689 # v4.1.4
     with:
       # VALIDATE_KUBERNETES_KUBECONFORM is set to false as it cannot process Helm charts
       # FILTER_REGEX_EXCLUDE excludes prompt files - they're for AI consumption, not human documentation
