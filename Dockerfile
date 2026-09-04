@@ -48,7 +48,7 @@ apt-get install --yes --no-install-recommends \
   "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.3" \
   "gcc=4:13.2.0-7ubuntu1" \
-  "gpg=2.4.4-2ubuntu17.4" \
+  "gpg=2.4.4-2ubuntu17.6" \
   "gzip=1.12-1ubuntu3.2" \
   "jq=1.7.1-3ubuntu0.24.04.2" \
   "libicu-dev=74.2-1ubuntu3.1" \
