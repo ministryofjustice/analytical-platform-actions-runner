@@ -1,6 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
 
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:f4da486bc9b357039b00eb68d03fdbda5570525a5c14f56907d75fd5aa204f8f
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b
 
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
@@ -15,8 +15,8 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.335.1" \
-    ACTIONS_RUNNER_PKG_SHA="4ef2f25285f0ae4477f1fe1e346db76d2f3ebf03824e2ddd1973a2819bf6c8cf" \
+    ACTIONS_RUNNER_VERSION="2.337.0" \
+    ACTIONS_RUNNER_PKG_SHA="70920811a4f8ad4328818682bca5c6469c1c942fab52448868071d0063816613" \
     MICROSOFT_SQL_ODBC_VERSION="18.7.1.1-1" \
     MICROSOFT_SQL_TOOLS_VERSION="18.7.1.1-1" \
     PATH="/opt/mssql-tools18/bin:${PATH}"
@@ -44,7 +44,7 @@ apt-get update
 apt-get install --yes --no-install-recommends \
   "apt-transport-https=2.8.3" \
   "ca-certificates=20260601~24.04.1" \
-  "curl=8.5.0-2ubuntu10.13" \
+  "curl=8.5.0-2ubuntu10.15" \
   "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.3" \
   "gcc=4:13.2.0-7ubuntu1" \
