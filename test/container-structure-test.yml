@@ -10,7 +10,7 @@ commandTests:
   - name: "ubuntu"
     command: "grep"
     args: ["DISTRIB_RELEASE", "/etc/lsb-release"]
-    expectedOutput: ["DISTRIB_RELEASE=24.04"]
+    expectedOutput: ["DISTRIB_RELEASE=26.04"]
 
   - name: "whoami"
     command: "whoami"
@@ -29,7 +29,7 @@ commandTests:
   - name: "actions-runner"
     command: "bash"
     args: ["run.sh", "--version"]
-    expectedOutput: ["2.337.0"]
+    expectedOutput: ["2.335.1"]
 
   - name: "sqlcmd"
     command: "sqlcmd"

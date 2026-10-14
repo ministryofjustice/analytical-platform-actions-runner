@@ -1,4 +1,99 @@
 ignore:
+  # Ubuntu 26.04 base image ships /usr/bin/pebble built with Go 1.26.7.
+  # The current Ubuntu 26.04 tag uses Go 1.27.1, which remains affected until
+  # Go 1.27.2. Keep these exceptions scoped to this binary/version until the
+  # base image includes the fixed Pebble build. Removing Pebble may break jobs
+  # that use this general-purpose runner image. exp:2026-11-14
+  - vulnerability: GO-2026-6612
+    include-aliases: true
+    reason: "Ubuntu base image Pebble binary; awaiting a fixed upstream build. exp:2026-11-14"
+    package:
+      name: stdlib
+      version: go1.26.7
+      type: go-module
+      location: /usr/bin/pebble
+
+  - vulnerability: GO-2026-6604
+    include-aliases: true
+    reason: "Ubuntu base image Pebble binary; awaiting a fixed upstream build. exp:2026-11-14"
+    package:
+      name: stdlib
+      version: go1.26.7
+      type: go-module
+      location: /usr/bin/pebble
+
+  - vulnerability: GO-2026-6603
+    include-aliases: true
+    reason: "Ubuntu base image Pebble binary; awaiting a fixed upstream build. exp:2026-11-14"
+    package:
+      name: stdlib
+      version: go1.26.7
+      type: go-module
+      location: /usr/bin/pebble
+
+  - vulnerability: GO-2026-6611
+    include-aliases: true
+    reason: "Ubuntu base image Pebble binary; awaiting a fixed upstream build. exp:2026-11-14"
+    package:
+      name: stdlib
+      version: go1.26.7
+      type: go-module
+      location: /usr/bin/pebble
+
+  - vulnerability: GO-2026-6608
+    include-aliases: true
+    reason: "Ubuntu base image Pebble binary; awaiting a fixed upstream build. exp:2026-11-14"
+    package:
+      name: stdlib
+      version: go1.26.7
+      type: go-module
+      location: /usr/bin/pebble
+
+  - vulnerability: GO-2026-6607
+    include-aliases: true
+    reason: "Ubuntu base image Pebble binary; awaiting a fixed upstream build. exp:2026-11-14"
+    package:
+      name: stdlib
+      version: go1.26.7
+      type: go-module
+      location: /usr/bin/pebble
+
+  - vulnerability: GO-2026-6609
+    include-aliases: true
+    reason: "Ubuntu base image Pebble binary; awaiting a fixed upstream build. exp:2026-11-14"
+    package:
+      name: stdlib
+      version: go1.26.7
+      type: go-module
+      location: /usr/bin/pebble
+
+  - vulnerability: GO-2026-6613
+    include-aliases: true
+    reason: "Ubuntu base image Pebble binary; awaiting a fixed upstream build. exp:2026-11-14"
+    package:
+      name: stdlib
+      version: go1.26.7
+      type: go-module
+      location: /usr/bin/pebble
+
+  - vulnerability: GO-2026-6605
+    include-aliases: true
+    reason: "Ubuntu base image Pebble binary; awaiting a fixed upstream build. exp:2026-11-14"
+    package:
+      name: stdlib
+      version: go1.26.7
+      type: go-module
+      location: /usr/bin/pebble
+
+  - vulnerability: GO-2026-6610
+    include-aliases: true
+    reason: "Ubuntu base image Pebble binary; awaiting a fixed upstream build. exp:2026-11-14"
+    package:
+      name: stdlib
+      version: go1.26.7
+      type: go-module
+      location: /usr/bin/pebble
+
   # Actions Runner externals - vulnerabilities in bundled npm packages cannot be remediated
   # via the Dockerfile; requires an upstream Actions Runner version bump to resolve.
   # Tracked: upgrade ACTIONS_RUNNER_VERSION when fixed versions are available.
