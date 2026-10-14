@@ -134,3 +134,12 @@ ignore:
     reason: "Bundled in Actions Runner externals/node20 and externals/node24 npm - not user-installable"
   - vulnerability: GHSA-qhr7-859c-m2p7
     reason: "Bundled in Actions Runner externals/node20 and externals/node24 npm - not user-installable"
+
+  # System.Security.Cryptography.Pkcs 10.0.11 (fixed in 10.0.13)
+  - vulnerability: GHSA-846f-f764-76mx
+    reason: |
+      Bundled with Actions Runner 2.337.0 in Runner.Sdk.deps.json, Sdk.deps.json,
+      Runner.Worker.deps.json, Runner.Plugins.deps.json, Runner.PluginHost.deps.json,
+      Runner.Listener.deps.json, and Runner.Common.deps.json. This runner-owned
+      dependency cannot be updated through Dockerfile APT pins; remove this ignore
+      when the upstream runner includes System.Security.Cryptography.Pkcs 10.0.13 or later.
