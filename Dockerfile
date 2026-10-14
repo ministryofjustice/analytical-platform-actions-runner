@@ -1,6 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
 
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:5ce7043d3beb84e91bfeecacb5fafc80602bf247a1dd6016bc0fe7d69d707eca
+FROM public.ecr.aws/ubuntu/ubuntu:26.04@sha256:99b345756d0ddb56dd7ab9c8d26f6ab41364506c00757a8c5b7ee793ea07fca3
 
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
@@ -15,8 +15,8 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.337.0" \
-    ACTIONS_RUNNER_PKG_SHA="70920811a4f8ad4328818682bca5c6469c1c942fab52448868071d0063816613" \
+    ACTIONS_RUNNER_VERSION="2.335.1" \
+    ACTIONS_RUNNER_PKG_SHA="4ef2f25285f0ae4477f1fe1e346db76d2f3ebf03824e2ddd1973a2819bf6c8cf" \
     MICROSOFT_SQL_ODBC_VERSION="18.7.1.1-1" \
     MICROSOFT_SQL_TOOLS_VERSION="18.7.1.1-1" \
     PATH="/opt/mssql-tools18/bin:${PATH}"
@@ -42,24 +42,24 @@ chown --recursive ${CONTAINER_USER}:${CONTAINER_GROUP} ${CONTAINER_HOME}
 apt-get update
 
 apt-get install --yes --no-install-recommends \
-  "apt-transport-https=2.8.3" \
-  "ca-certificates=20260601~24.04.1" \
-  "curl=8.5.0-2ubuntu10.15" \
-  "gettext=0.21-14ubuntu2" \
-  "git=1:2.43.0-1ubuntu7.3" \
-  "gcc=4:13.2.0-7ubuntu1" \
-  "gpg=2.4.4-2ubuntu17.6" \
-  "gzip=1.12-1ubuntu3.2" \
-  "jq=1.7.1-3ubuntu0.24.04.2" \
-  "libicu-dev=74.2-1ubuntu3.1" \
-  "libsqlite3-dev=3.45.1-1ubuntu2.8" \
- "libattr1=1:2.5.2-1ubuntu0.1" \
-  "attr=1:2.5.2-1ubuntu0.1" \
-  "lsb-release=12.0-2" \
-  "libncursesw6=6.4+20240113-1ubuntu2.2" \
-  "libtinfo6=6.4+20240113-1ubuntu2.2" \
-  "ncurses-base=6.4+20240113-1ubuntu2.2" \
-  "ncurses-bin=6.4+20240113-1ubuntu2.2"
+  "apt-transport-https=3.2.0" \
+  "ca-certificates=20260601~26.04.1" \
+  "curl=8.18.0-1ubuntu2.8" \
+  "gettext=0.23.2-1" \
+  "git=1:2.53.0-1ubuntu1" \
+  "gcc=4:15.2.0-5ubuntu1" \
+  "gpg=2.4.8-4ubuntu3.1" \
+  "gzip=1.14-1~exp2ubuntu1.1" \
+  "jq=1.8.1-4ubuntu2" \
+  "libicu-dev=78.2-2ubuntu1" \
+  "libsqlite3-dev=3.46.1-9ubuntu0.3" \
+  "libattr1=1:2.5.2-4ubuntu0.1" \
+  "attr=1:2.5.2-4ubuntu0.1" \
+  "lsb-release=12.1-2build1" \
+  "libncursesw6=6.6+20251231-1" \
+  "libtinfo6=6.6+20251231-1" \
+  "ncurses-base=6.6+20251231-1" \
+  "ncurses-bin=6.6+20251231-1"
 
 apt-get clean
 
@@ -78,14 +78,15 @@ EOF
 # Microsoft SQL ODBC and Tools
 RUN <<EOF
 curl --location --fail-with-body \
-  "https://packages.microsoft.com/keys/microsoft.asc" \
+  "https://packages.microsoft.com/keys/microsoft-2025.asc" \
   --output microsoft.asc
 
 cat microsoft.asc | gpg --dearmor --output microsoft-prod.gpg
 
 install -D --owner root --group root --mode 644 microsoft-prod.gpg /usr/share/keyrings/microsoft-prod.gpg
 
-echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/24.04/prod noble main" > /etc/apt/sources.list.d/mssql-release.list
+source /etc/os-release
+echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/${VERSION_ID}/prod ${VERSION_CODENAME} main" > /etc/apt/sources.list.d/mssql-release.list
 
 apt-get update --yes
 

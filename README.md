@@ -37,19 +37,19 @@ This repository includes a Copilot prompt for maintenance in [`.github/prompts/`
 Dependabot is configured to do this in [`.github/dependabot.yml`](.github/dependabot.yml), but if you need to get the digest, do the following
 
 ```bash
-docker pull --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:24.04
+docker pull --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:26.04
 
-docker image inspect --format='{{ index .RepoDigests 0 }}' public.ecr.aws/ubuntu/ubuntu:24.04
+docker image inspect --format='{{ index .RepoDigests 0 }}' public.ecr.aws/ubuntu/ubuntu:26.04
 ```
 
 ### APT Packages
 
-The latest versions of the APT packages can be obtained by visiting `https://packages.ubuntu.com/noble/${PACKAGE}` (for example [jq](https://packages.ubuntu.com/noble/jq)).
+The latest versions of the APT packages can be obtained by visiting `https://packages.ubuntu.com/resolute/${PACKAGE}` (for example [jq](https://packages.ubuntu.com/resolute/jq)).
 
 Alternatively, if you are not running in a dev container, you can run the following
 
 ```bash
-docker run -it --rm --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:24.04
+docker run -it --rm --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:26.04
 
 apt-get update
 
@@ -67,21 +67,22 @@ Releases for GitHub Actions Runner are maintained on [GitHub](https://github.com
 The latest version of Microsoft ODBC driver for SQL Server can be obtained by running:
 
 ```bash
-docker run -it --rm --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:24.04
+docker run -it --rm --platform linux/amd64 public.ecr.aws/ubuntu/ubuntu:26.04
 
 apt-get update --yes
 
 apt-get install --yes curl gpg
 
 curl --location --fail-with-body \
-  "https://packages.microsoft.com/keys/microsoft.asc" \
+  "https://packages.microsoft.com/keys/microsoft-2025.asc" \
   --output microsoft.asc
 
 cat microsoft.asc | gpg --dearmor --output microsoft-prod.gpg
 
 install -D --owner root --group root --mode 644 microsoft-prod.gpg /usr/share/keyrings/microsoft-prod.gpg
 
-echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/24.04/prod noble main" > /etc/apt/sources.list.d/mssql-release.list
+. /etc/os-release
+echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/${VERSION_ID}/prod ${VERSION_CODENAME} main" > /etc/apt/sources.list.d/mssql-release.list
 
 apt-get update --yes
 
