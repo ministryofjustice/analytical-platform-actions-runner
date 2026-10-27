@@ -1,5 +1,4 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Health checks are implemented downstream of this image
-
 FROM docker.io/library/ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac
 
 
@@ -15,8 +14,8 @@ ENV CONTAINER_USER="runner" \
     CONTAINER_GID="10000" \
     CONTAINER_HOME="/actions-runner" \
     DEBIAN_FRONTEND="noninteractive" \
-    ACTIONS_RUNNER_VERSION="2.338.1" \
-    ACTIONS_RUNNER_PKG_SHA="08e9ccb3604d2462c24b5e33604dc30810296ca15cc65f23cffd4317eb144c37" \
+    ACTIONS_RUNNER_VERSION="2.337.0" \
+    ACTIONS_RUNNER_PKG_SHA="70920811a4f8ad4328818682bca5c6469c1c942fab52448868071d0063816613" \
     MICROSOFT_SQL_ODBC_VERSION="18.7.1.1-1" \
     MICROSOFT_SQL_TOOLS_VERSION="18.7.1.1-1" \
     PATH="/opt/mssql-tools18/bin:${PATH}"
