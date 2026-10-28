@@ -153,3 +153,11 @@ ignore:
     reason: |
       A high vulnerability in npm package: undici, version 6.28.0 was found in
       image f09541d at: /actions-runner/externals/node24/lib/node_modules/npm/node_modules/undici/package.json (fixed in 6.29.1)
+
+  # undici 6.28.0 (fixed in 6.29.1)
+  - vulnerability: GHSA-xjj6-f33q-929c
+    reason: "Bundled in Actions Runner externals/node24 npm - not user-installable"
+  - vulnerability: GHSA-qrxm-fqhp-jwvm
+    reason: "Bundled in Actions Runner externals/node24 npm - not user-installable"
+  - vulnerability: GHSA-2m5v-pch6-74hx
+    reason: "Bundled in Actions Runner externals/node24 npm - not user-installable"
