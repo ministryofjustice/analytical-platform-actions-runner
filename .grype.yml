@@ -161,3 +161,14 @@ ignore:
     reason: "Bundled in Actions Runner externals/node24 npm - not user-installable"
   - vulnerability: GHSA-2m5v-pch6-74hx
     reason: "Bundled in Actions Runner externals/node24 npm - not user-installable"
+  # node critical - fixed-version metadata from scanner ("11.0.0") is not meaningful for the 20.x line
+  - vulnerability: CVE-2026-111497
+    reason: "Bundled in Actions Runner externals/node20 (20.20.2) - Node 20 reached EOL 2026-04-30, no fixed 20.x build will ever be released upstream. Scanner-reported fix version (11.0.0) does not apply to 20.x. Not user-installable. exp:2026-12-01"
+
+  # node high - fixed in 22.23.4 (no 20.x fix)
+  - vulnerability: CVE-2026-105482
+    reason: "Bundled in Actions Runner externals/node20 (20.20.2) - Node 20 reached EOL 2026-04-30, no fixed 20.x build will ever be released upstream. Not user-installable. exp:2026-12-01"
+
+  # node high - fixed in 22.23.4 (no 20.x fix)
+  - vulnerability: CVE-2026-106069
+    reason: "Bundled in Actions Runner externals/node20 (20.20.2) - Node 20 reached EOL 2026-04-30, no fixed 20.x build will ever be released upstream. Not user-installable. exp:2026-12-01"
