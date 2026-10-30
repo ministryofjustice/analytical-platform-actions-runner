@@ -1,5 +1,6 @@
 ignore:
   # Actions Runner externals - vulnerabilities in bundled npm packages cannot be remediated
+
   
   # via the Dockerfile; requires an upstream Actions Runner version bump to resolve.
   # Tracked: upgrade ACTIONS_RUNNER_VERSION when fixed versions are available.
