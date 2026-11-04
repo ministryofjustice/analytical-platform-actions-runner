@@ -58,7 +58,7 @@ apt-cache policy ${PACKAGE} # for example curl, git or gpg
 
 ### GitHub Action Runner
 
-Releases for GitHub Actions Runner are maintained on [GitHub](https://github.com/actions/runner/releases).
+Releases for GitHub Actions Runner are maintained on [GitHub](https://github.com/actions/runner/releases). Check here for the latest release and update `ACTIONS_RUNNER_VERSION` and `ACTIONS_RUNNER_PKG_SHA` accordingly.
 
 `ACTIONS_RUNNER_PKG_SHA` is found under **SHA-256 Checksums** in the new version release notes. Use the checksum for `actions-runner-linux-x64-{VERSION_NUMBER}.tar.gz`
 
