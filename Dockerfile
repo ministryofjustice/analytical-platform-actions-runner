@@ -52,8 +52,10 @@ apt-get install --yes --no-install-recommends \
   "gzip=1.12-1ubuntu3.2" \
   "jq=1.7.1-3ubuntu0.24.04.2" \
   "libicu-dev=74.2-1ubuntu3.1" \
-  "libsqlite3-dev=3.45.1-1ubuntu2.8" \
- "libattr1=1:2.5.2-1ubuntu0.1" \
+  "libsqlite3-0=3.45.1-1ubuntu2.9" \
+  "libsqlite3-dev=3.45.1-1ubuntu2.9" \
+  "libattr1=1:2.5.2-1ubuntu0.1" \
+  "libpcre2-8-0=10.42-4ubuntu2.2" \
   "attr=1:2.5.2-1ubuntu0.1" \
   "lsb-release=12.0-2" \
   "libncursesw6=6.4+20240113-1ubuntu2.2" \

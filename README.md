@@ -58,7 +58,7 @@ apt-cache policy ${PACKAGE} # for example curl, git or gpg
 
 ### GitHub Action Runner
 
-Releases for GitHub Actions Runner are maintained on [GitHub](https://github.com/actions/runner/releases).
+Releases for GitHub Actions Runner are maintained on [GitHub](https://github.com/actions/runner/releases). Check here for the latest release and update `ACTIONS_RUNNER_VERSION` and `ACTIONS_RUNNER_PKG_SHA` accordingly.
 
 `ACTIONS_RUNNER_PKG_SHA` is found under **SHA-256 Checksums** in the new version release notes. Use the checksum for `actions-runner-linux-x64-{VERSION_NUMBER}.tar.gz`
 
@@ -89,6 +89,18 @@ apt-cache policy msodbcsql18
 
 apt-cache policy mssql-tools18
 ```
+
+## Release Process
+
+Once the `Dockerfile` and `test/container-structure-test.yml` have been patched (see [Managing Software Versions](#managing-software-versions)) and merged, cut a new release as follows:
+
+1. Merge any open Dependabot pull requests in this repository.
+2. Update and merge [`chart/Chart.yaml`](./chart/Chart.yaml) (`version` and `appVersion`) and [`chart/values.yaml`](./chart/values.yaml) (`image.tag`) with the intended new release tag, **before** creating the release.
+   - Determine this tag first. It should match `ACTIONS_RUNNER_VERSION` pinned in the `Dockerfile`, unless a [release](https://github.com/ministryofjustice/analytical-platform-actions-runner/releases) already exists for that version, in which case append or increment a `-N` suffix (for example `2.337.0-1`, `2.337.0-2`).
+3. Create a new [release](https://github.com/ministryofjustice/analytical-platform-actions-runner/releases) using that same tag, from the commit containing the merged chart changes.
+   - [`chart-release.yml`](.github/workflows/chart-release.yml) and [`container-release.yml`](.github/workflows/container-release.yml) both trigger on tag push and package from that tagged commit, so the chart must already be updated and merged before the tag is created, or the old chart will be published against the new tag.
+4. Update the images used in the [Modernisation Platform environments](https://github.com/ministryofjustice/modernisation-platform-environments) repository with the new release tag.
+5. Deploy to the relevant Modernisation Platform environments.
 
 ## Maintenance
 
