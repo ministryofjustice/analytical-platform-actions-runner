@@ -42,8 +42,8 @@ chown --recursive ${CONTAINER_USER}:${CONTAINER_GROUP} ${CONTAINER_HOME}
 apt-get update
 
 apt-get install --yes --no-install-recommends \
-  "apt-transport-https=2.8.3" \
-  "ca-certificates=20260816ubuntu0.24.04.1" \
+  "apt-transport-https=2.8.4ubuntu0.1" \
+  "ca-certificates=20260816ubuntu0.24.04.2" \
   "curl=8.5.0-2ubuntu10.16" \
   "gettext=0.21-14ubuntu2" \
   "git=1:2.43.0-1ubuntu7.4" \
