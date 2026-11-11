@@ -133,3 +133,6 @@ ignore:
   # node high - fixed in 22.23.4 (no 20.x fix)
   - vulnerability: CVE-2026-106069
     reason: "Bundled in Actions Runner externals/node20 (20.20.2) - Node 20 reached EOL 2026-04-30, no fixed 20.x build will ever be released upstream. Not user-installable. exp:2026-12-01"
+# Microsoft.AspNetCore.WebUtilities 8.0.25 (fixed in 8.0.34) - High
+  - vulnerability: GHSA-x33c-w48q-qrgc
+    reason: "Bundled in Actions Runner bin/ (.NET dependency in Runner.Worker.deps.json) - not user-installable; requires upstream runner release built against Microsoft.AspNetCore.WebUtilities >= 8.0.34. exp:2027-01-01"
