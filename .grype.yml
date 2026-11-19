@@ -87,6 +87,34 @@ ignore:
   - vulnerability: CVE-2026-48937
     reason: "Bundled in Actions Runner externals/node20 (20.20.2) - Node 20 reached EOL 2026-04-30, no fixed 20.x build will ever be released upstream. Not user-installable. exp:2026-09-01"
 
+    # node - High
+  - vulnerability: CVE-2026-126051
+    reason: "Bundled in Actions Runner externals/node (24.22.1) - exp:2026-12-01"
+
+    # node - High
+  - vulnerability: CVE-2026-123865
+    reason: "Bundled in Actions Runner externals/node (24.22.1/20.20.2) - exp:2026-12-01"
+
+    # node - High
+  - vulnerability: CVE-2026-123866
+    reason: "Bundled in Actions Runner externals/node (24.22.1/20.20.2) - exp:2026-12-01"
+
+    # node - High
+  - vulnerability: CVE-2026-123874
+    reason: "Bundled in Actions Runner externals/node (24.22.1) - exp:2026-12-01"
+
+    # node - High
+  - vulnerability: CVE-2026-123863
+    reason: "Bundled in Actions Runner externals/node (24.22.1) - exp:2026-12-01"
+
+    # node - High
+  - vulnerability: CVE-2026-123872
+    reason: "Bundled in Actions Runner externals/node (24.22.1/20.20.2) - exp:2026-12-01"
+
+    # node - High
+  - vulnerability: CVE-2026-123864
+    reason: "Bundled in Actions Runner externals/node (24.22.1/20.20.2) - exp:2026-12-01"
+
   # pacote < 21.5.1 - High
   - vulnerability: GHSA-w4pp-8pjf-rmxw
     reason: "Bundled in Actions Runner externals/node24/lib/node_modules/npm/node_modules/pacote - not user-installable. exp:2026-09-01"
